@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/34e972a4c1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>DPN Store</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="image/2.png" alt="">
+        </div>
+        <div class="menu">
+            <li><a href=""> HÀNG MỚI</a></li>
+    <li><a href="">ÁO NAM</a>  
+        <ul class="sub-menu">
+            <li><a href="">ÁO SƠ MI</a></li>
+            <li><a href="">ÁO THUN</a></li>
+            <li><a href="">ÁO POLO</a></li>
+            <li><a href="">ÁO KHOÁC</a></li>
+            <li><a href="">ÁO HOODIE</a></li>
+            <li><a href="">ÁO LEN</a></li>
+        </ul>
+    </li>
+            <li><a href="">QUẦN NAM</a> 
+                <ul class="sub-menu">
+                    <li><a href="">QUẦN JEAN</a></li>
+                    <li><a href="">QUẦN KAKI</a></li>
+                    <li><a href="">QUẦN TÂY</a></li>
+                    <li><a href="">QUẦN JOGGER</a></li>     
+                </ul>
+            </li>
+            <li><a href="">PHỤ KIỆN</a>
+                <ul class="sub-menu">
+                    <li><a href="">THẮT LƯNG</a></li>
+                    <li><a href="">VÍ DA</a></li>
+                    <li><a href="">CÀ VẠT</a></li>
+                    <li><a href="">MŨ NÓN</a></li>     
+                </ul>
+            </li>
+            <li><a href=""> GIÀY DÉP</a>
+                <ul class="sub-menu">
+                    <li><a href="">GIÀY</a></li>
+                    <li><a href="">SCANDEL</a></li>
+                    <li><a href="">DÉP NAM</a></li>
+                    
+                </ul>
+            </li>
+        </div>
+        <div class="orthe">
+            <li><input type="text" placeholder="Tìm kiếm "><i class="fas fa-search"></i></li>
+            <li><a class="fa fa-paw"></a></li>
+            <li><a class="fa fa-user"></a></li>
+            <li><a class="fa fa-shopping-bag"></a></li>
+        </div>
+    </header>
+
+    <section id="slider">
+        <div class="aspect-ratio-169">
+             <img src="image/slide1.jpg">
+             <img src="image/slide2.jpg">
+             <img src="image/slide3.jpg">
+        </div>
+    </section>
+    <div class="dot-container">
+        <div class="dot "></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    <br><br><br>
+    <div class="footer-top">
+    <li>  <img src="image/logo.png" alt=""></li>
+    <li> <a>Giới thiệu</a></li> 
+    <li>   <a>Liên hệ</a></li>
+    <li> <a>Tuyển dụng</a></li>
+    <li><a href="">Tin tức</a></li>
+    <li>  <p>email : dpnx8421@gmail.com</p></li>
+    <li>  <a href="" class="fab fa-facebook-f"></a>
+        <a href="" class="fab fa-twitter"></a>
+        <a href="" class="fab fa-youtube"></a></li> 
+
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright 2023 · Thiết kế và phát triển bởi DPN store All rights reserved</p>
+       <br><p>Chủ Quản:Đỗ Phương Nam</p> 
+      <br>  SĐT Cá Nhân: 0349146200
+    </div>
+    
+</body>
+<script>
+    const imgPosition=document.querySelectorAll(".aspect-ratio-169 img")
+    const imgContainer=document.querySelector('.aspect-ratio-169')
+    const dotItem=document.querySelectorAll('.dot')
+    let imgNumber=imgPosition.length
+    let index=0
+     console.log(imgPosition);
+    imgPosition.forEach(function(image,index) {
+        image.style.left = index*100 +"%";
+        dotItem[index].addEventListener("click",function () {
+            slider(index)
+        })
+    })
+    function imgSilde() {
+        index++
+        if (index >=imgNumber) {
+            index=0;
+        }
+        slider(index)
+    }
+  
+    function slider(index) {
+        imgContainer.style.left= "-" +index*100+"%";
+        // const dotActive=document.querySelector('.active')
+        // dotActive.classList.remove('active')
+        dotItem[index].classList.add('active')
+    }
+  setInterval(imgSilde,5000);
+</script>
+</html>
