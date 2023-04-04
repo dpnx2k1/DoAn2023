@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/34e972a4c1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <title>DPN Store</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="image/2.png" alt="">
+        </div>
+        <div class="menu">
+            <li><a href=""> HÀNG MỚI</a></li>
+    <li><a href="">ÁO NAM</a>  
+        <ul class="sub-menu">
+            <li><a href="">ÁO SƠ MI</a></li>
+            <li><a href="">ÁO THUN</a></li>
+            <li><a href="">ÁO POLO</a></li>
+            <li><a href="">ÁO KHOÁC</a></li>
+            <li><a href="">ÁO HOODIE</a></li>
+            <li><a href="">ÁO LEN</a></li>
+        </ul>
+    </li>
+            <li><a href="">QUẦN NAM</a> 
+                <ul class="sub-menu">
+                    <li><a href="">QUẦN JEAN</a></li>
+                    <li><a href="">QUẦN KAKI</a></li>
+                    <li><a href="">QUẦN TÂY</a></li>
+                    <li><a href="">QUẦN JOGGER</a></li>     
+                </ul>
+            </li>
+            <li><a href="">PHỤ KIỆN</a>
+                <ul class="sub-menu">
+                    <li><a href="">THẮT LƯNG</a></li>
+                    <li><a href="">VÍ DA</a></li>
+                    <li><a href="">CÀ VẠT</a></li>
+                    <li><a href="">MŨ NÓN</a></li>     
+                </ul>
+            </li>
+            <li><a href=""> GIÀY DÉP</a>
+                <ul class="sub-menu">
+                    <li><a href="">GIÀY</a></li>
+                    <li><a href="">SCANDEL</a></li>
+                    <li><a href="">DÉP NAM</a></li>
+                    
+                </ul>
+            </li>
+        </div>
+        <div class="orthe">
+            <li><input type="text" placeholder="Tìm kiếm "><i class="fas fa-search"></i></li>
+            <li><a class="fa fa-paw"></a></li>
+            <li><a class="fa fa-user"></a></li>
+            <li><a class="fa fa-shopping-bag"></a></li>
+        </div>
+    </header>
+    <!-- cart -->
+    <section class="cart">
+        <div class="container">
+            <div class="cart-top-wrap">
+                <div class="cart-top">
+                    <div class="cart-top-shopping cart-top-item">
+                        <i class="fas fa-shopping-cart "></i>
+                    </div>
+                    <div class="cart-top-address cart-top-item">
+                        <i class="fa-solid fa-map"></i>
+                    </div>
+                    <div class="cart-top-money cart-top-item">
+                        <i class="fa-solid fa-money-bill-transfer" ></i>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="cart-content row">
+                <div class="cart-content-left">
+                    <table>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Màu</th>
+                            <th>Size</th>
+                            <th>SL</th>
+                            <th>Thành Tiền</th>
+                            <th>Xóa</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="image/sp1l2.jpg" alt="">
+                            </td>
+                            <td><p> Suede Jacket - Áo Khoác Sơ Mi Da Lộn MS 70E3758</p></td>
+                            <td><img src="image/color.png" alt=""></td>
+                            <td><p>L</p></td>
+                            <td>
+                                <input type="number" min="1" value="1">
+                            </td>
+                            <td><p>489.000 <sup>đ</sup></p></td>
+                            <td><span>X</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="cart-content-right">
+                    <table>
+                        <tr>
+                            <th colspan="2">Tổng Tiền Giỏ Hàng</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                TỔNG SẢN PHẨM
+                            </td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>TỔNG TIỀN HÀNG</td>
+                            <td><p>489.000 <sup>đ</sup></p></td>
+                        </tr>
+                        <tr>
+                            <td>TẠM TÍNH</td>
+                            <td><p style="color: black; font-weight:bold;">489.000 <sup>đ</sup></p></td>
+                        </tr>
+                    </table>
+                    <div class="cart-content-right-text">
+                        <p>bạn sẽ được miễn phí ship đơn hàng nếu tổng tiền hàng của bạn lớn hơn 2.000.000<sup>đ</sup></p>
+                        <p style="color:red;font-weight:bold">Mua thêm <span style="font-size: 18px;">1.511.000</span> <sub>đ</sub> để được miễn phí SHIP</p>
+                    </div>
+                    <div class="cart-content-right-button">
+                        <button>TIẾP TỤC MUA SẮM</button>
+                        <button>THANH TOÁN</button>
+                    </div>
+                    <div class="cart-content-right-login">
+                        <p>TÀI KHOẢN</p>
+                        <p>Hãy <a href="http://localhost:3000/giaodien/login.html " style="color: gray;">đăng nhập</a> tài khoản của bạn để tích điểm thành viên</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!----------------- footer ----------------->
+    <div class="footer-top">
+        <li>  <img src="image/logo.png" alt=""></li>
+        <li> <a>Giới thiệu</a></li> 
+        <li>   <a>Liên hệ</a></li>
+        <li> <a>Tuyển dụng</a></li>
+        <li><a href="">Tin tức</a></li>
+        <li>  <p>email : dpnx8421@gmail.com</p></li>
+        <li>  <a href="" class="fab fa-facebook-f"></a>
+            <a href="" class="fab fa-twitter"></a>
+            <a href="" class="fab fa-youtube"></a></li> 
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright 2023 · Thiết kế và phát triển bởi DPN store All rights reserved</p>
+           <br><p>Chủ Quản:Đỗ Phương Nam</p> 
+          <br>  SĐT Cá Nhân: 0349146200
+        </div> 
+    </body>
+    <script language="javascript" src="script.js"></script>
+</html>
