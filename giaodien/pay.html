@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/34e972a4c1.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <title>DPN Store</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="image/2.png" alt="">
+        </div>
+        <div class="menu">
+            <li><a href=""> HÀNG MỚI</a></li>
+    <li><a href="">ÁO NAM</a>  
+        <ul class="sub-menu">
+            <li><a href="">ÁO SƠ MI</a></li>
+            <li><a href="">ÁO THUN</a></li>
+            <li><a href="">ÁO POLO</a></li>
+            <li><a href="">ÁO KHOÁC</a></li>
+            <li><a href="">ÁO HOODIE</a></li>
+            <li><a href="">ÁO LEN</a></li>
+        </ul>
+    </li>
+            <li><a href="">QUẦN NAM</a> 
+                <ul class="sub-menu">
+                    <li><a href="">QUẦN JEAN</a></li>
+                    <li><a href="">QUẦN KAKI</a></li>
+                    <li><a href="">QUẦN TÂY</a></li>
+                    <li><a href="">QUẦN JOGGER</a></li>     
+                </ul>
+            </li>
+            <li><a href="">PHỤ KIỆN</a>
+                <ul class="sub-menu">
+                    <li><a href="">THẮT LƯNG</a></li>
+                    <li><a href="">VÍ DA</a></li>
+                    <li><a href="">CÀ VẠT</a></li>
+                    <li><a href="">MŨ NÓN</a></li>     
+                </ul>
+            </li>
+            <li><a href=""> GIÀY DÉP</a>
+                <ul class="sub-menu">
+                    <li><a href="">GIÀY</a></li>
+                    <li><a href="">SCANDEL</a></li>
+                    <li><a href="">DÉP NAM</a></li>
+                    
+                </ul>
+            </li>
+        </div>
+        <div class="orthe">
+            <li><input type="text" placeholder="Tìm kiếm "><i class="fas fa-search"></i></li>
+            <li><a class="fa fa-paw"></a></li>
+            <li><a class="fa fa-user"></a></li>
+            <li><a class="fa fa-shopping-bag"></a></li>
+        </div>
+    </header>
+
+        <!----------------pay-------------------------- -->
+    <section class="pay">
+        <div class="container">
+            <div class="pay-top-wrap">
+                <div class="pay-top">
+                    <div class="pay-top-shopping pay-top-item">
+                        <i class="fa-sharp fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <div class="pay-top-address pay-top-item">
+                        <i class="fa-solid fa-map"></i>
+                    </div>
+                    <div class="pay-top-money pay-top-item">
+                        <i class="fa-solid fa-money-bill-transfer" ></i>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="pay-content row">
+                <div class="pay-content-left">
+                    <div class="pay-content-left-method-delivery">
+                        <p style="font-weight: bold;">Phương thức giao hàng</p>
+                        <div class="pay-content-left-method-delivery-item">
+                            <input name="method-delivery" type="radio">
+                            <label for="">Giao hàng chuyển phát nhanh </label>                           
+                        </div>
+                        <div class="pay-content-left-method-delivery-item">
+                            <input name="method-delivery" type="radio">
+                            <label for="">Giao hàng hỏa tốc</label>                           
+                        </div>
+                    </div>
+                    <div class="pay-content-left-method-pay">
+                        <p style="font-weight: bold;">Phương thức thanh toán</p>
+                        <p>mọi giao dịch đều được bảo mật</p>
+                        <div class="pay-content-left-method-pay-item">
+                            <input name="method-pay" type="radio">
+                            <label for="">Thanh toán bằng thẻ tín dụng (OnePay)</label>
+                        </div>
+                        <div class="pay-content-left-method-pay-item-img">
+                            <img src="image/visa-credit-card.png" alt="">
+                            <img src="image/master-card.png" alt="">
+                        </div>
+                        <div class="pay-content-left-method-pay-item">
+                            <input name="method-pay" type="radio">
+                            <label for="">Thanh toán bằng thẻ ATM</label>
+                        </div>
+                        <div class="pay-content-left-method-pay-item-img">
+                            <img src="image/logo-ngan-hang.png" alt="">
+                           
+                        </div>
+                        <div class="pay-content-left-method-pay-item">
+                            <input name="method-pay" type="radio">
+                            <label for="">Thanh toán bằng ví momo</label>
+                        </div>
+                        <div class="pay-content-left-method-pay-item-img">
+                            <img style="width: 100px;" src="image/momo.png" alt="">
+                        </div>
+                        <div class="pay-content-left-method-pay-item">
+                            <input name="method-pay" type="radio">
+                            <label for="">Thu tiền tận nơi</label>
+                        </div>
+                        <div class="pay-content-left-method-pay-item-img">
+                            <img style="width: 100px;" src="image/shipper.webp" alt="">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="pay-content-right">
+                    <div class="pay-content-right-button">
+                        <input type="text" placeholder="Mã Giảm Giá - Quà Tặng">
+                        <button><i class="fa-solid fa-check"></i></button>
+                    </div>
+                    <div class="pay-content-right-button">
+                        <input type="text" placeholder="Mã Cộng Tác Viên">
+                        <button><i class="fa-solid fa-check"></i></button>
+                    </div>
+                    <div class="pay-content-right-mnv">
+                        <select name="" id="">
+                            <option value="">Chọn mã nhân viên thân thiết </option>
+                            <option value="">ASD</option>
+                            <option value="">ooo</option>
+                            <option value="">bbb</option>
+                            <option value="">ccc</option>
+                        </select>
+                    </div>
+                    <div class="pay-content-right-tttt">
+                        <button>TIẾP TỤC THANH TOÁN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+          <!----------------- footer ----------------->
+          <div class="footer-top">
+            <li>  <img src="image/logo.png" alt=""></li>
+            <li> <a>Giới thiệu</a></li> 
+            <li>   <a>Liên hệ</a></li>
+            <li> <a>Tuyển dụng</a></li>
+            <li><a href="">Tin tức</a></li>
+            <li>  <p>email : dpnx8421@gmail.com</p></li>
+            <li>  <a href="" class="fab fa-facebook-f"></a>
+                <a href="" class="fab fa-twitter"></a>
+                <a href="" class="fab fa-youtube"></a></li> 
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright 2023 · Thiết kế và phát triển bởi DPN store All rights reserved</p>
+               <br><p>Chủ Quản:Đỗ Phương Nam</p> 
+              <br>  SĐT Cá Nhân: 0349146200
+            </div> 
+        </body>
+        <script language="javascript" src="script.js"></script>
+    </html>

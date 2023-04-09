@@ -157,6 +157,7 @@ header:hover{
     background-color: #333;
 }
 .footer-top{
+    border-top: 3px solid black;
     display: flex;
     text-align: center;
     align-items: center;
@@ -229,7 +230,7 @@ header:hover{
     display: flex; 
     justify-content: space-between;
     background-color: #ffff;
-    border: 1px solid #dddddd;
+    border: 1px solid gray;
     cursor: pointer;
 }
 .category-right-top-item select{
@@ -238,7 +239,7 @@ header:hover{
     display: flex;
     justify-content: space-between;
     background-color: #ffff;
-    border: 1px solid #dddddd;
+    border: 1px solid gray;
     cursor: pointer;
 }
 .category-right-content {
@@ -371,7 +372,7 @@ header:hover{
 .size span{
     display: inline-block;
     padding: 3px 6px;
-    border: 1px solid #dddddd;
+    border: 1px solid gray;
     margin: 12px 10px 12px 0;
     font-size: 12px;
     cursor: pointer;
@@ -435,14 +436,14 @@ header:hover{
 .product-content-right-product-bottom{
     position: relative;
     padding-top: 40px;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid gray;
 
 }
 .product-content-right-product-bottom-top{
     position: absolute;
     width: 30px;
     height: 30px;
-    border: 1px solid #dddddd; 
+    border: 1px solid gray; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -455,7 +456,7 @@ header:hover{
     
 }
 .product-content-right-product-bottom-content-big-title{
-    border-bottom: 2px solid #dddddd;
+    border-bottom: 2px solid gray;
 }
 .product-content-right-product-bottom-content-big-title-item{
     padding: 6px;
@@ -523,7 +524,7 @@ header:hover{
 .cart-top{
     height: 2px;
     width: 70%;
-    background-color: #dddddd;
+    background-color: gray;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -533,7 +534,7 @@ header:hover{
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid #dddddd;
+    border: 1px solid gray;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -560,7 +561,7 @@ header:hover{
     text-transform: uppercase;
     color: #333;
     border-collapse: collapse;
-    border-bottom: 2px solid #dddddd;
+    border-bottom: 2px solid gray;
 }
 .cart-content-left table p{
     font-size: 16px;
@@ -574,7 +575,7 @@ header:hover{
     display: block;
     width: 20px;
     height: 20px;
-    border: 1px solid #dddddd;
+    border: 1px solid gray;
 
 }
 .cart-content-left td:first-child img{
@@ -582,7 +583,7 @@ header:hover{
 }
 .cart-content-left table td{
     padding: 20px 0;
-    border-bottom: 2px solid #dddddd;
+    border-bottom: 2px solid gray;
 }
 .cart-content-left td:nth-child(2){
     max-width: 150px;
@@ -593,7 +594,7 @@ header:hover{
 .cart-content-right{
     flex: 1;
     padding-left: 15px;
-    border-left: 2px solid #dddddd;
+    border-left: 2px solid gray;
 }
 .cart-content-right table{
     width: 100%;
@@ -612,7 +613,7 @@ header:hover{
     padding: 6px 0;
 }
 .cart-content-right tr:nth-child(4){
-    border-bottom: 2px solid #dddddd;
+    border-bottom: 2px solid gray;
 }
 .cart-content-right tr td:last-child{
     text-align: right;
@@ -675,7 +676,7 @@ header:hover{
 .delivery-top{
     height: 2px;
     width: 70%;
-    background-color: #dddddd;
+    background-color: gray;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -685,14 +686,14 @@ header:hover{
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid #dddddd;
+    border: 1px solid gray;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #fff;
 }
 .delivery-top-item i{
-    color: #dddddd;
+    color: gray;
 }
 .delivery-top-address i{
     color: #0DB7EA;
@@ -743,13 +744,13 @@ header:hover{
 .delivery-content-left-input-top-item input{
     width: 100%;
     height: 35px;
-    border: 1px solid #dddddd;
+    border: 1px solid gray;
     padding-left: 6px;
 }
 .delivery-content-left-input-bottom input{
     width: 100%;
     height: 35px;
-    border: 1px solid #dddddd;
+    border: 1px solid gray;
     padding-left: 6px;
 }
 .delivery-content-left-input-bottom span{
@@ -773,7 +774,7 @@ header:hover{
 .delivery-content-right{
     width: 40%;
     padding-left: 12px;
-    border-left: 2px solid #dddddd;
+    border-left: 2px solid gray;
     height: auto;
 }
 .delivery-content-right table{
@@ -787,7 +788,7 @@ header:hover{
 }
 .delivery-content-right table tr th{
     padding-bottom: 16px;
-    border-bottom: 2px solid #dddddd;
+    border-bottom: 2px solid gray;
 }
 .delivery-content-right table tr th:last-child{
     text-align: right;
@@ -800,4 +801,99 @@ header:hover{
 }
 .delivery-content-right table tr td:first-child{
     text-align: left;
+}
+/* pay - thanh toán */
+.pay{
+    
+    padding: 100px 0;
+}
+.pay-top-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pay-top{
+    height: 2px;
+    width: 70%;
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0 100px;
+}
+.pay-top-item{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+.pay-top-item i{
+    color: gray;
+}
+.pay-top-money i{
+    color: #0DB7EA;
+}
+.pay-content-left{
+    width: 40%;
+}
+.pay-content-right{
+    width: 40%;
+    border-left: 2px solid gray;
+    padding-left: 14px;
+}
+.pay-content-left p,label{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+}
+.pay-content-right-button{
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px dashed gray;
+}
+.pay-content-right-button input{
+    height: 40px;
+    width: 200px;
+    margin-right: 20px;
+    padding-left: 16px;
+}
+.pay-content-right-button button{
+    height: 30px;
+    width: 100px;
+    background-color: black;
+    margin-top: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.pay-content-right-mnv{
+    margin-top: 20px;
+}
+.pay-content-right-mnv>select{
+    height: 30px;
+    width: 100%;
+    color: #75758A;
+    padding-left: 12px;
+    margin-bottom: 12px;
+}
+.pay-content-right-tttt{
+    margin-top: 120px;
+    align-items: center;
+    text-align: center;
+}
+.pay-content-right-tttt button{
+    height: 35px;
+    padding: 0 20px;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+    border: 2px solid black;
+    transition: all 0.3s ease-in-out;
+}
+.pay-content-right-tttt button:hover{
+    background-color: black;
+    color: white;
 }
