@@ -24,7 +24,7 @@ header{
 .admin-content-left{
     background-color: antiquewhite;
     width: 20%;
-    height: 100vh;
+    height: 150vh;
     padding: 30px 30px;
 }
 .admin-content-left>ul>li>ul>li:first-child{
@@ -93,4 +93,35 @@ header{
 }
 .admin-content-right-category-list table tr th,td{
     border: 1px solid black;
+}
+/* -------------Product-------------- */
+.admin-content-right-product_add h1{
+    margin-bottom: 20px;
+}
+.admin-content-right-product_add input,select{
+    display: block;
+    width: 200px;
+    height: 35px;
+    margin: 6px 0 16px;
+}
+.admin-content-right-product_add textarea{
+    display: block;
+    height: 200px;
+    width: 500px;
+    margin-bottom: 20px;
+}
+.admin-content-right-product_add button{
+    display: block;
+    margin-top: 10px;
+    margin-left: 50px;
+    height: 33px;
+    width: 100px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    transition: all 0.3s ease;
+}
+.admin-content-right-product_add button:hover{
+    background-color: tomato;
+    color: white;
 }

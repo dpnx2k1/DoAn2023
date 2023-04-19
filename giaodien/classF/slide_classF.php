@@ -1,24 +1,20 @@
 <?php
 
-include "../config/database.php";
+include "./config/database.php";
 
-class category{
+class slideF{
     private $db;
     public function __construct()
     {
         $this -> db= new Database();
     }
-    public function insert_category($category_name){
-        $query = "INSERT INTO tbl_category(category_name) VALUES('$category_name')";
-        $result = $this ->db->insert($query);
-        header("location: category_list.php");
-        return $result;
-    }
-    public function show_category(){
-        $query ="SELECT category_id,category_name FROM tbl_category ORDER BY category_id DESC";
+
+    public function show_slideF(){
+        $query ="SELECT slide_img FROM tbl_slide";
         $result = $this ->db->select($query);
         return $result;
     }
+
 
     public function get_category($category_id){
         $query="SELECT category_id,category_name FROM tbl_category WHERE category_id=$category_id";

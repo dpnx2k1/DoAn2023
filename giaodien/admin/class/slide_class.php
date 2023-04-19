@@ -2,23 +2,29 @@
 
 include "../config/database.php";
 
-class category{
+class slide{
     private $db;
     public function __construct()
     {
         $this -> db= new Database();
     }
-    public function insert_category($category_name){
-        $query = "INSERT INTO tbl_category(category_name) VALUES('$category_name')";
-        $result = $this ->db->insert($query);
-        header("location: category_list.php");
-        return $result;
+
+    public function insert_slide(){
+        
+        $slide_img =$_FILES['slide_img']['name'];
+        $filetmp =$_FILES['slide_img']['tmp_name'];
+        foreach($slide_img as $key => $value) {
+            move_uploaded_file($filetmp[$key],"Upload/".$value);
+            $query="INSERT INTO tbl_slide(slide_img) VALUES('$value')";
+            $result = $this ->db->insert($query);
+        }
     }
-    public function show_category(){
-        $query ="SELECT category_id,category_name FROM tbl_category ORDER BY category_id DESC";
+    public function show_slide(){
+        $query ="SELECT slide_id,slide_img FROM tbl_slide ORDER BY slide_id DESC";
         $result = $this ->db->select($query);
         return $result;
     }
+
 
     public function get_category($category_id){
         $query="SELECT category_id,category_name FROM tbl_category WHERE category_id=$category_id";

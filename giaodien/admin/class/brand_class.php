@@ -1,6 +1,6 @@
 <?php
 
-include "database.php";
+include "../config/database.php";
 
 class brand{
     private $db;
