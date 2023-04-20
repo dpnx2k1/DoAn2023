@@ -1,9 +1,8 @@
 <?php 
 include "headerF.php";
-include "./classF/slide_classF.php";
 ?>
 <?php 
-    $slideF= new slideF;
+    $slideF= new index;
     $show_slideF= $slideF->show_slideF();
 ?>
     <section id="slider">
@@ -11,12 +10,10 @@ include "./classF/slide_classF.php";
         <?php
             if ($show_slideF) {                      
                  while ($result = $show_slideF->fetch_assoc()) { ?>
-
                <?php  echo'<img src="admin/Upload/'.$result['slide_img'].'"/>'; ?>
           <?php    }
              }
         ?>  
-
         </div>
     </section>
     <div class="dot-container">

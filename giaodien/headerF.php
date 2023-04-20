@@ -4,53 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/34e972a4c1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="style_F.css">
     <title>DPN Store</title>
 </head>
-
+<?php 
+    include "./classF/index_class.php";
+    $header= new index;
+    $show_category= $header ->show_category_header();
+    
+?>
 <body>
     <header>
         <div class="logo">
             <img src="image/2.png" alt="">
         </div>
         <div class="menu">
-            <li><a href=""> HÀNG MỚI</a></li>
-    <li><a href="">ÁO NAM</a>  
-        <ul class="sub-menu">
-            <li><a href="">ÁO SƠ MI</a></li>
-            <li><a href="">ÁO THUN</a></li>
-            <li><a href="">ÁO POLO</a></li>
-            <li><a href="">ÁO KHOÁC</a></li>
-            <li><a href="">ÁO HOODIE</a></li>
-            <li><a href="">ÁO LEN</a></li>
-        </ul>
-    </li>
-            <li><a href="">QUẦN NAM</a> 
-                <ul class="sub-menu">
-                    <li><a href="">QUẦN JEAN</a></li>
-                    <li><a href="">QUẦN KAKI</a></li>
-                    <li><a href="">QUẦN TÂY</a></li>
-                    <li><a href="">QUẦN JOGGER</a></li>     
-                </ul>
-            </li>
-            <li><a href="">PHỤ KIỆN</a>
-                <ul class="sub-menu">
-                    <li><a href="">THẮT LƯNG</a></li>
-                    <li><a href="">VÍ DA</a></li>
-                    <li><a href="">CÀ VẠT</a></li>
-                    <li><a href="">MŨ NÓN</a></li>     
-                </ul>
-            </li>
-            <li><a href=""> GIÀY DÉP</a>
-                <ul class="sub-menu">
-                    <li><a href="">GIÀY</a></li>
-                    <li><a href="">SCANDEL</a></li>
-                    <li><a href="">DÉP NAM</a></li>
-                    
-                </ul>
-            </li>
+                   <?php 
+                        if ($show_category) {
+                            while ($result= $show_category->fetch_assoc()) {  
+                                $category_id= $result['category_id']; 
+                                $show_brand = $header->show_brand($category_id);
+                                // if ($show_brand) {
+                                //     $resultB=$show_brand->fetch_assoc();                                 
+                        ?>
+                    <li><a href="category.php"><?php echo $result['category_name']?></a>
+                    <ul class="sub-menu">
+                <?php  if ($show_brand) {
+                            while ($resultB=$show_brand->fetch_assoc()) {                       
+                 ?>  
+                        <li><a href=<?php echo'category.php?brand_id='.$resultB['brand_id'].''; ?>><?php echo $resultB['brand_name']?></a></li>      
+                <?php }} ?>
+                    </ul>
+                    </li>
+               <?php 
+               }}  
+               ?>
         </div>
         <div class="orthe">
             <li><input type="text" placeholder="Tìm kiếm "><i class="fas fa-search"></i></li>

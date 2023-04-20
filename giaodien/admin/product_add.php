@@ -35,7 +35,6 @@ include "class/product_class.php";
                     <label for="">Chọn loại Sản Phẩm <span style="color: red;">*</span></label>
                     <select name="brand_id" id="brand_id">
                         <option value="#">--Chọn--</option>
-
                     </select>
                     <label for="">Giá Sản phẩm <span style="color: red;">*</span></label>
                     <input name="product_price"  required type="text">
@@ -63,8 +62,8 @@ include "class/product_class.php";
     </script>
     <script>
      $(document).ready(function() {
-		$("#category_id").change(function() {
-            // alert($(this).val());
+		$("#category_id").click(function() {
+            //  alert($(this).val());
             var x = $(this).val();
 			$.get("product_add_ajax.php",{category_id:x},function(data){
 				$("#brand_id").html(data);
