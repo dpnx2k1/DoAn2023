@@ -21,22 +21,30 @@ class product{
     }
 
     public function insert_product(){
+        $product_id=$_POST['product_id'];
         $product_name=$_POST['product_name'];
         $category_id=$_POST['category_id'];
         $brand_id=$_POST['brand_id'];
+        $product_color_name=$_POST['product_color_name'];
+        $product_size=$_POST['product_size'];
+        $product_total=$_POST['product_total'];
         $product_price= $_POST['product_price'];
         $product_price_pro=$_POST['product_price_pro'];
         $product_description=$_POST['product_description'];
         $product_img=$_FILES['product_img']['name'];
         move_uploaded_file($_FILES['product_img']['tmp_name'],"Upload/".$_FILES['product_img']['name']);
-        $query = "INSERT INTO tbl_product(product_name,
+        $query = "INSERT INTO tbl_product(product_id,
+                                        product_name,
                                         category_id,
                                         brand_id,
+                                        product_color_name,
+                                        product_size,
                                         product_price,
+                                        product_total,
                                         product_price_pro,
                                         product_description,
                                         product_img
-        ) VALUES('$product_name','$category_id','$brand_id','$product_price','$product_price_pro','$product_description','$product_img')";
+        ) VALUES('$product_id','$product_name','$category_id','$brand_id','$product_color_name','$product_size','$product_total','$product_price','$product_price_pro','$product_description','$product_img')";
         $result = $this ->db->insert($query);
         if ($result) {
             $query="SELECT * FROM tbl_product ORDER BY product_id DESC LIMIT 1";

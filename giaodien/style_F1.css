@@ -8,9 +8,7 @@
 li{
     list-style: none; 
     /* border: 1px solid red; */
-   
 
-    
 }
 a{
     text-decoration: none;
@@ -348,19 +346,28 @@ header:hover{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     font-weight: bold;
+    text-transform: uppercase;
     
 }
 .product-content-right-product-name>p{
     margin: 5px 0;
-    color: #bbb;
-    font-size: 12px;
+    color: #000;
+    font-size: 16px;
 }
-.product-content-right-product-price{
+.product-content-right-product-price p:first-child{
+    margin: 12px 10px 0px 0px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: solid line-through;
+    
+}
+.product-content-right-product-price p:last-child{
     margin: 12px 0;
     font-size: 20px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-
+    
 }
 .product-content-right-product-color-img>img{
     width: 30px;

@@ -18,6 +18,8 @@ include "class/product_class.php";
              <div class="admin-content-right-product_add">
                 <h1>Thêm Sản phẩm</h1>
                 <form action="" method="POST" enctype="multipart/form-data">
+                    <label for="">Nhập Mã Sản phẩm <span style="color: red;">*</span></label>
+                    <input name="product_id"  required type="text">
                     <label for="">Nhập tên Sản Phẩm <span style="color: red;">*</span></label>
                     <input name="product_name" required type="text" placeholder="nhập tên sản phẩm">
                     <label for="">Chọn danh mục<span style="color: red;">*</span></label>
@@ -36,6 +38,29 @@ include "class/product_class.php";
                     <select name="brand_id" id="brand_id">
                         <option value="#">--Chọn--</option>
                     </select>
+                    <label for="product_size">Chọn size <span style="color: red;">*</span></label>
+                    <select name="product_size" id="product_size">
+                        <option value="#">--Chọn--</option>
+                        <option value="">S</option>
+                        <option value="">M</option>
+                        <option value="">L</option>
+                        <option value="">XL</option>
+                        <option value="">XXL</option>         
+                    </select>
+                    <label for="product_color_name">Chọn màu <span style="color: red;">*</span></label>
+                    <select name="product_color_name" id="product_color_name">
+                        <option value="#">--Chọn--</option>
+                        <option value="">Xanh lá</option>
+                        <option value="">Đỏ</option>
+                        <option value="">Tím</option>
+                        <option value="">Vàng</option>
+                        <option value="">Lục</option>  
+                        <option value="">Xanh Da Trời</option>
+                        <option value="">Tràm</option>
+                        <option value="">Be</option>       
+                    </select>
+                    <label for="">Số Lượng Sản phẩm <span style="color: red;">*</span></label>
+                    <input name="product_total"  required type="text">
                     <label for="">Giá Sản phẩm <span style="color: red;">*</span></label>
                     <input name="product_price"  required type="text">
                     <label for="">Giá Khuyến mãi<span style="color: red;">*</span></label>

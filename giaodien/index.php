@@ -8,8 +8,11 @@ include "headerF.php";
     <section id="slider">
         <div class="aspect-ratio-169">
         <?php
+            $i=0;
             if ($show_slideF) {                      
-                 while ($result = $show_slideF->fetch_assoc()) { ?>
+                 while ($result = $show_slideF->fetch_assoc()) {
+                    $i++;
+                    ?>
                <?php  echo'<img src="admin/Upload/'.$result['slide_img'].'"/>'; ?>
           <?php    }
              }
@@ -17,9 +20,12 @@ include "headerF.php";
         </div>
     </section>
     <div class="dot-container">
+    <?php     
+      for ($x=0; $x <$i ; $x++) { 
+        ?>  
         <div class="dot "></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+      <?php } ?>
+       
     </div>
     <br><br><br>
 <?php 

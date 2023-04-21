@@ -66,11 +66,11 @@ include "./classF/category_class.php";
                         
                         ?>
                             <div  class="category-right-content-item">
-                                <a href="product.html"><img src=<?php echo'"admin/Upload/'.$kq['product_img'].'"'; ?> alt=""></a>
+                                <a href=<?php echo'product.php?product_id='.$kq['product_id'].''; ?>><img src=<?php echo'"admin/Upload/'.$kq['product_img'].'"'; ?> alt=""></a>
                                 <h1><?php echo $kq['product_name']  ?></h1>
                                 <p><?php echo $kq['product_price']  ?><sup>đ</sup></p>
                             </div>
-
+                            
                          <?php }} ?>
                  
                                   
