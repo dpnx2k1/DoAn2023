@@ -8,14 +8,23 @@ include "./classF/category_class.php";
     $show_brand_name = $category->show_brand_c($brand_id);
     if ($show_brand_name) {
     $resultC=$show_brand_name->fetch_assoc();   
-   } 
-    
+   }  
 ?>
  <!---------------------------------- category ------------------------------------>
  <section class="category">
         <div class="container">
             <div class="category-top row">
-                <p>Trang chủ</p><span>&#8594;</span><p><?php echo $resultC['brand_name'];?></p><span>&#8594;</span><p>áo sơ mi</p>
+                <p>Trang chủ</p><span>&#8594;</span>
+                <p>
+                <?php 
+                    $category_id=$resultC['category_id'];
+                    $show_cate_name=$category->show_category_by_id($category_id);
+                  if ($show_cate_name) {
+                       $kq=$show_cate_name-> fetch_assoc();
+                  }
+                 echo $kq['category_name']?></p>
+                 <span>&#8594;</span>
+                 <p><?php echo $resultC['brand_name'];?></p>
             </div>
         </div>
         <div class="container">

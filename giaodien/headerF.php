@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/34e972a4c1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style_F1.css">
+    <link rel="stylesheet" href="style_F.css">
+    <script language="javascript" src="script.js"></script>
     <title>DPN Store</title>
 </head>
 <?php 

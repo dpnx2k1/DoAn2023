@@ -1,31 +1,50 @@
 <?php 
+include "config/session.php";
 include "headerF.php";
 include "./classF/product_class.php";
+
+    $session= new Session;
+    $session_Pr=$session->init();
     $product= new product;
-    $product_id=$_GET['product_id'];
-    $show_product= $product->show_product_byid($product_id);
-    if ($show_product) {
-        $result_pr= $show_product->fetch_assoc();
+    if (isset($_GET['product_id'])) {
+
+        $product_id =$_GET['product_id'];
+        $show_product= $product->show_product_byid($product_id);
+        if ($show_product) {
+            $result_pr= $show_product->fetch_assoc();
+        }
+        $category_id = $result_pr['category_id'];
+        $show_category_pr= $product->show_category_in_product($category_id);
+        if ($show_category_pr) {
+            $category_name=$show_category_pr->fetch_assoc();
+        }
+        $brand_id = $result_pr['brand_id'];
+        $show_brand_pr= $product->show_brand_in_product($brand_id);
+        if ($show_brand_pr) {
+            $brand_name=$show_brand_pr->fetch_assoc();
+        }
+        $product_name=$result_pr['product_name'];
+        if(!isset( $_SESSION['product_name'] ) )
+        {
+            $_SESSION['product_name'] =$product_name;
+        }
+        else
+        {   
+            $_SESSION['product_name'] = '';
+        }
     }
-    $category_id = $result_pr['category_id'];
-    $show_category_pr= $product->show_category_in_product($category_id);
-    if ($show_category_pr) {
-        $category_name=$show_category_pr->fetch_assoc();
-    }
-    $brand_id = $result_pr['brand_id'];
-    $show_brand_pr= $product->show_brand_in_product($brand_id);
-    if ($show_brand_pr) {
-        $brand_name=$show_brand_pr->fetch_assoc();
-    }
+    
+
 ?>
    <!-- ----------------------------product-------------------------------- -->
+   
    <section>
         <div class="product">
             <div class="container">
                 <div class="product-top row">
                     <p><a href="index.php">Trang chủ</a></p>
                     <span>&#8594;
-                    </span><p><?php echo $category_name['category_name']?></p><span>
+                    </span><p><?php  echo $category_name['category_name']?></p><span>
                     &#8594;
                     </span><?php echo $brand_name['brand_name']?><p></p><span>
                     &#8594;
@@ -68,51 +87,54 @@ include "./classF/product_class.php";
                                while ($color_id=$get_color_id->fetch_assoc()) {
                                
                               ?>
-                             <i class="fa-solid fa-circle-check" style=<?php echo '"color:'.$color_id['product_color_id'].';margin-right:12px"'?>></i></label>
+                             <i class="fa-solid fa-circle-check" style=<?php echo '"color:'.$color_id['color_id'].';margin-right:12px"'?>></i>
                               <?php }
                             } ?>
                         </div>
+                        <!-- <?php //echo'"product.php?product_id='.$result_pr['product_id'].'"'?> -->
+                        <form action="cart.php?action=add" method="POST">
                         <div class="product-content-right-product-size">
-                            <p style="font-weight: bold">Size :</p>
-                            <div class="size">
-                                <span>S</span>
-                                <span>M</span>
-                                <span>L</span>
-                                <span>XL</span>
-                                <span>XXL</span>
-                            </div>
+                            <p style="font-weight: bold;padding-top: 2px;margin-right: 5px;">Size :</p>
+                            <div class="size">   
+                              <select name="product_size" id="product_size">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXl</option>
+                              </select>
+                              <input type="text" name="product_color_name" style="display: none;" value="<?php echo $result_pr['product_color_name'];?>">
+                              <input type="text" name="product_name" style="display: none;" value="<?php echo $result_pr['product_name'];?>">
+                            
+                            </div> 
                         </div>
                         <div class="quantity">
-                            <p style="font-weight: bold">Số Lượng :</p>
-                            <input type="number" min="0" value="1">
-                            
+                            <p style="font-weight: bold;">Số Lượng :</p>
+                            <input name="<?php echo 'quantity_pr['.$result_pr['product_id'].']'?>" type="number" min="0" value="1"> 
                         </div>
-                        <p style="color: red;">vui lòng chọn size</p> 
+                    
                         <div class="product-content-right-product-button">
-                                <button>
+                               <a href="cart.html"> <button type="submit">
                                     <i class="fa-brands fa-shopify"></i>
-                                    <p>MUA HÀNG</p>
-                                </button>
-                                <button>
-                                   <p>TÌM TẠI CỦA HÀNG</p>
-                                </button>
+                                    <p>MUA NGAY</p>
+                                </button></a>
+
+                                <a href="cart.php"><button type="submit">
+                                   <p>THÊM VÀO GIỎ HÀNG</p>
+                                </button> </a>
                         </div>
+                        </form>
+                        <br> 
+                 
                         <div class="product-content-right-product-icon row">
                             <div class="product-content-right-product-icon-item">
                                 <i class="fa-solid fa-phone"></i> 
-                                <p>Hotline</p>
-                            </div>
-                            <div class="product-content-right-product-icon-item">
-                                <i class="fa-regular fa-comment"></i>
-                                <p>Chat</p>
+                                <p>Hotline :0349146200</p>
                             </div>
                             <div class="product-content-right-product-icon-item">
                                 <i class="fa-solid fa-envelope"></i>
-                                <p>Email</p>
+                                <p>Email :dpnx1234@gmail.com</p>
                             </div>
-                        </div>
-                        <div class="product-content-right-product-QR">
-                            <img src="image/QR.png" alt="">
                         </div>
                         <div class="product-content-right-product-bottom">
                             <div class="product-content-right-product-bottom-top">
@@ -121,42 +143,33 @@ include "./classF/product_class.php";
                             <div class="product-content-right-product-bottom-content-big">
                                 <div class="product-content-right-product-bottom-content-big-title row">
                                     <div class="product-content-right-product-bottom-content-big-title-item chitiet">
-                                            <p>Chi tiết</p>
+                                            <p>Giới Thiệu |</p>
                                     </div>
                                     <div class="product-content-right-product-bottom-content-big-title-item baoquan">
-                                            <p>Bảo Quản</p>
+                                            <p>Bảo Quản |</p>
                                     </div>
-                                    <div class="product-content-right-product-bottom-content-big-title-item">
+                                    <div class="product-content-right-product-bottom-content-big-title-item thamkhao">
                                             <p>Tham khảo Size</p>
                                     </div>
                                 </div>
                                 <div class="product-content-right-product-bottom-content-center">
                                     <div class="product-content-right-product-bottom-content-center-chitiet">
-                                        <p>Đầm dự tiệc phối hoa bản to nổi bật và ấn tượng, tạo điểm nhấn nhá trên trang phục của nàng, phù hợp để mặc đi dự các sự kiện lớn, tiệc tùng,... Thiết kế vai chờm vừa kín đáo vừa khoe được cánh tay thon gọn đồng thời tôn lên vóc dáng cân đối của nàng. Đầm dáng ôm, độ dài qua đầu gối, phần chân váy xẻ tà 1 bên quyến rũ. Kết hợp cùng chất vải tuytsi mềm mại, đứng phom càng tăng nét sang trọng cho bộ trang phục.
-                                            <br>
-                                            Thông tin mẫu:
-                                            <br>
-                                            Chiều cao: 167 cm
-                                            <br>
-                                            Cân nặng: 50 kg
-                                            <br>
-                                            Số đo 3 vòng: 83-65-93 cm
-                                            <br>
-                                            Mẫu mặc size M
-                                            <br>
-                                            Lưu ý: Màu sắc sản phẩm thực tế sẽ có sự chênh lệch nhỏ so với ảnh do điều kiện ánh sáng khi chụp và màu sắc hiển thị qua màn hình máy tính/ điện thoại.</p>
+                                    <?php echo $result_pr['product_description']?>
                                     </div>
                                     <div class="product-content-right-product-bottom-content-center-baoquan">
-                                        <p>abczzz</p>
+                                    <?php echo $result_pr['product_pre']?>
+                                    </div>
+                                    <div class="product-content-right-product-bottom-content-center-thamkhao">
+                                    <?php echo $result_pr['product_pre']?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> 
+        </div> 
+  
     </section>
     <!-- ----product liên quan  -->
     <section>
@@ -193,6 +206,7 @@ include "./classF/product_class.php";
             </div>
         </div>
     </section>
+
 <?php 
 include "footerF.php";
 ?>

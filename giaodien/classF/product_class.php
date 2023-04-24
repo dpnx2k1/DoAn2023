@@ -31,7 +31,7 @@ class product{
      }
      
      public function get_color_id_by_product_id($product_color_name){
-        $query ="SELECT  * FROM product_color WHERE product_color_name='$product_color_name' ";
+        $query ="SELECT  * FROM color WHERE product_color_name='$product_color_name'";
          $result = $this ->db->select($query);
          return $result;
      }
