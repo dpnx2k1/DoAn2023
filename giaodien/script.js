@@ -44,11 +44,10 @@ const smallImg = document.querySelectorAll(".product-content-left-small-img img"
    )
 const baoquan=document.querySelector(".baoquan")
 const chitiet=document.querySelector(".chitiet")
-const thamkhao=document.querySelector(".thamkhao")
+
     if(baoquan){
         baoquan.addEventListener("click",function () {
-            document.querySelector(".product-content-right-product-bottom-content-center-chitiet").style.display = "none"  
-            document.querySelector(".product-content-right-product-bottom-content-center-thamkhao").style.display = "none"       
+            document.querySelector(".product-content-right-product-bottom-content-center-chitiet").style.display = "none"         
             document.querySelector(".product-content-right-product-bottom-content-center-baoquan").style.display = "block"
           
         })
@@ -56,16 +55,10 @@ const thamkhao=document.querySelector(".thamkhao")
         chitiet.addEventListener("click",function () {
             document.querySelector(".product-content-right-product-bottom-content-center-chitiet").style.display = "block"
             document.querySelector(".product-content-right-product-bottom-content-center-baoquan").style.display = "none" 
-            document.querySelector(".product-content-right-product-bottom-content-center-thamkhao").style.display = "none"        
+                 
         })
     }
-     if (thamkhao) {
-        chitiet.addEventListener("click",function () {
-            document.querySelector(".product-content-right-product-bottom-content-center-thamkhao").style.display = "block"
-            document.querySelector(".product-content-right-product-bottom-content-center-baoquan").style.display = "none"
-            document.querySelector(".product-content-right-product-bottom-content-center-chitiet").style.display = "none"         
-        })
-    }
+    
 const buttonHidden=document.querySelector(".product-content-right-product-bottom-top")
 if (buttonHidden) {
     buttonHidden.addEventListener("click",function() {

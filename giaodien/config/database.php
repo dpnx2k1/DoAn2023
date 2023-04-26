@@ -8,18 +8,24 @@ class Database{
     
     public $link;
     public $error;
-
+ 
     public function __construct()
     {
-        $this-> connectDB();
+        $this-> connectDB();   
     }
-    private function connectDB(){
+    public function connectDB(){
         $this->link= new mysqli($this->host,$this->user,$this->pass,$this->dbName);
         if (!$this->link) {
             $this->error="Connection Fail".$this->link->connect_error;
             return false;
         }
     }
+    
+    public function geterorr()
+    {
+      return $this->error;
+    }
+
 #doc data 
 public function select($query){
     $result= $this->link->query($query) or die($this->link->error.__LINE__);

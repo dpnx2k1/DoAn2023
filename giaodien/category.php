@@ -4,11 +4,16 @@ include "./classF/category_class.php";
 ?>
 <?php 
     $category= new categoryF;
+    if (isset($_GET['brand_id'])) {
     $brand_id=$_GET['brand_id'];
     $show_brand_name = $category->show_brand_c($brand_id);
     if ($show_brand_name) {
     $resultC=$show_brand_name->fetch_assoc();   
-   }  
+   } 
+    }else {
+        header('location:category.php?brand_id=12&item_per_page=8&page=1');
+    }
+    
 ?>
  <!---------------------------------- category ------------------------------------>
  <section class="category">
@@ -52,29 +57,38 @@ include "./classF/category_class.php";
                       <?php }}?>
                 </ul>
                 </div>
-                <div class="category-right row">
-                         <div class="category-right-top-item">
+                <div class="category-right"> 
+                    <div class="row">
+                         <div class="category-right-top-item ">
                             <p><?php echo $resultC['brand_name'];?></p>
                         </div>
-                        <div class="category-right-top-item">
+                   
+                        <div class="category-right-top-item ">
                             <button><span>Bộ lọc</span><i class="fas fa-sort-down"></i></button>
                         </div>
-                        <div class="category-right-top-item">
+                        <div class="category-right-top-item ">
                             <select name="sapxep" id="">
                                 <option value="">sắp xếp</option>
                                 <option value="">Giá cáo đến thấp</option>
                                 <option value="">Giá thấp đến cao</option>
                             </select>
                         </div>
-                        <div class="category-right-content row">
+                    </div>
+                    <div class="category-right-content row">
                         <?php 
                             $brand_id_show=$_GET['brand_id'];
-                            $product_category=$category->show_product_by_brandid($brand_id_show);
+                            $item_per_page=!empty($_GET['item_per_page'])?$_GET['item_per_page']:8;
+                            $curren_page=!empty($_GET['page'])?$_GET['page']:8;
+                            $offset=($curren_page-1)*$item_per_page;
+                            $total=$category->show_product_total($brand_id);
+                            $total=$total->num_rows; // var_dump($total);
+                            $total_page=ceil($total/$item_per_page);
+                            $product_category=$category->show_product_by_brandid($brand_id_show,$item_per_page,$offset);
                             if ($product_category) {
                                while ($kq=$product_category->fetch_assoc()) {
                         
                         ?>
-                            <div  class="category-right-content-item">
+                            <div  class="category-right-content-item ">
                                 <a href=<?php echo'product.php?product_id='.$kq['product_id'].''; ?>><img src=<?php echo'"admin/Upload/'.$kq['product_img'].'"'; ?> alt=""></a>
                                 <h1><?php echo $kq['product_name']  ?></h1>
                                 <p><?php echo $kq['product_price']  ?><sup>đ</sup></p>
@@ -89,7 +103,7 @@ include "./classF/category_class.php";
                                 <p>Hiển thị 2 <span>|</span> 4 sản phẩm</p>
                             </div>
                             <div class="category-right-bottom-item">
-                               <p><span>&#171;</span>1 2 3 4 5 <span>&#187;</span>Trang cuối</p>
+                                <?php include "./pageCategory.php"; ?>
                             </div>
                 </div>  
          </div>

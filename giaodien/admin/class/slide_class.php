@@ -10,7 +10,6 @@ class slide{
     }
 
     public function insert_slide(){
-        
         $slide_img =$_FILES['slide_img']['name'];
         $filetmp =$_FILES['slide_img']['tmp_name'];
         foreach($slide_img as $key => $value) {
@@ -24,24 +23,19 @@ class slide{
         $result = $this ->db->select($query);
         return $result;
     }
+    public function update_slide(){
+        $slide_id=$_GET['slide_id'];
+        $slide_img =$_FILES['slide_img']['name'];
+        $filetmp =$_FILES['slide_img']['tmp_name'];
+        foreach($slide_img as $key => $value) {
+            move_uploaded_file($filetmp[$key],"Upload/".$value);      
+        } 
+        $query="UPDATE tbl_slide
+            SET `slide_img` = '$slide_img[0]'
+            WHERE `slide_id`= $slide_id";
+            $result = $this ->db->update($query);
+            header('location:slide_list.php');
+        }
+    }
 
-
-    public function get_category($category_id){
-        $query="SELECT category_id,category_name FROM tbl_category WHERE category_id=$category_id";
-        $result = $this ->db->select($query);
-        return $result;
-    }
-    public function update_category($category_id,$category_name){
-        $query="UPDATE tbl_category SET category_name = '$category_name' WHERE category_id='$category_id'";
-        $result = $this ->db->update($query); 
-        header("location: category_list.php");
-        return $result;    
-    }
-    public function delete_category($category_id){
-        $query="DELETE FROM tbl_category WHERE category_id='$category_id' ";
-        $result = $this ->db->delete($query); 
-        header("location: category_list.php");
-        return $result; 
-    }
-}
 ?>

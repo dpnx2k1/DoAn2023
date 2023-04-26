@@ -20,7 +20,12 @@ class categoryF{
         return $result;
     }
     
-    public function show_product_by_brandid($brand_id){
+    public function show_product_by_brandid($brand_id,$item_per_page,$offset){
+        $query ="SELECT * FROM tbl_product WHERE brand_id=$brand_id  ORDER BY product_id ASC LIMIT $item_per_page OFFSET $offset ";
+        $result = $this ->db->select($query);
+        return $result;
+    }
+    public function show_product_total($brand_id){
         $query ="SELECT * FROM tbl_product WHERE brand_id=$brand_id";
         $result = $this ->db->select($query);
         return $result;

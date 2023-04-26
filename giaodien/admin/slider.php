@@ -26,6 +26,13 @@
                         <li><a href="">Thêm sản phẩm nổi bật</a></li>
                     </ul>
                 </li>
+                <li><a href="">Quản lý thông tin tài khoản</a>
+                    <ul>
+                        <li></i><a href="sign_Up.php">Tạo Tài khoản admin mới</a></li>
+                        <li></i><a href="list_user.php">danh sách tài khoản</a></li>
+                        
+                    </ul>
+                </li>
                
             </ul>
         </div>

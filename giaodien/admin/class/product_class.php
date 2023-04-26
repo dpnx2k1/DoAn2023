@@ -19,7 +19,11 @@ class product{
         $result = $this ->db->select($query);
         return $result;
     }
-
+    public function show_product(){
+        $query ="SELECT * FROM tbl_product ORDER BY product_id DESC";
+        $result = $this ->db->select($query);
+        return $result;
+    }
     public function insert_product(){
         $product_name=$_POST['product_name'];
         $category_id=$_POST['category_id'];

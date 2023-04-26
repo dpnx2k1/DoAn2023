@@ -34,7 +34,6 @@ include "./classF/product_class.php";
         }
     }
     
-
 ?>
    <!-- ----------------------------product-------------------------------- -->
    
@@ -146,11 +145,11 @@ include "./classF/product_class.php";
                                             <p>Giới Thiệu |</p>
                                     </div>
                                     <div class="product-content-right-product-bottom-content-big-title-item baoquan">
-                                            <p>Bảo Quản |</p>
+                                            <p>Bảo Quản </p>
                                     </div>
-                                    <div class="product-content-right-product-bottom-content-big-title-item thamkhao">
+                                    <!-- <div class="product-content-right-product-bottom-content-big-title-item thamkhao">
                                             <p>Tham khảo Size</p>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="product-content-right-product-bottom-content-center">
                                     <div class="product-content-right-product-bottom-content-center-chitiet">
@@ -159,9 +158,9 @@ include "./classF/product_class.php";
                                     <div class="product-content-right-product-bottom-content-center-baoquan">
                                     <?php echo $result_pr['product_pre']?>
                                     </div>
-                                    <div class="product-content-right-product-bottom-content-center-thamkhao">
-                                    <?php echo $result_pr['product_pre']?>
-                                    </div>
+                                    <!-- <div class="product-content-right-product-bottom-content-center-thamkhao">
+                                   
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

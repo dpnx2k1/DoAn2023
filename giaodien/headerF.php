@@ -7,7 +7,6 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/34e972a4c1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style_F.css">
-    <script language="javascript" src="script.js"></script>
     <title>DPN Store</title>
 </head>
 <?php 
@@ -35,7 +34,7 @@
                 <?php  if ($show_brand) {
                             while ($resultB=$show_brand->fetch_assoc()) {                       
                  ?>  
-                        <li><a href=<?php echo'category.php?brand_id='.$resultB['brand_id'].''; ?>><?php echo $resultB['brand_name']?></a></li>      
+                        <li><a href=<?php echo'category.php?brand_id='.$resultB['brand_id'].'&item_per_page=8&page=1'; ?>><?php echo $resultB['brand_name']?></a></li>      
                 <?php }} ?>
                     </ul>
                     </li>
