@@ -3,9 +3,9 @@ include "config/session.php";
 include "headerF.php";
 include "./classF/product_class.php";
 
-    $session= new Session;
-    $session_Pr=$session->init();
-    $product= new product;
+    // $session= new Session;
+    // $session_Pr=$session->init();
+    // $product= new product;
     if (isset($_GET['product_id'])) {
 
         $product_id =$_GET['product_id'];
@@ -23,15 +23,15 @@ include "./classF/product_class.php";
         if ($show_brand_pr) {
             $brand_name=$show_brand_pr->fetch_assoc();
         }
-        $product_name=$result_pr['product_name'];
-        if(!isset( $_SESSION['product_name'] ) )
-        {
-            $_SESSION['product_name'] =$product_name;
-        }
-        else
-        {   
-            $_SESSION['product_name'] = '';
-        }
+        // $product_name=$result_pr['product_name'];
+        // if(!isset( $_SESSION['product_name'] ) )
+        // {
+        //     $_SESSION['product_name'] =$product_name;
+        // }
+        // else
+        // {   
+        //     $_SESSION['product_name'] = '';
+        // }
     }
     
 ?>

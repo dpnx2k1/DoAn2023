@@ -2,6 +2,7 @@
 include "header.php";
 include "slider.php";
 include "./class/product_class.php";
+include "../config/session.php";
 ?>
 <?php
     $product = new product;
@@ -44,7 +45,7 @@ include "./class/product_class.php";
                         <td><?php echo '<img style="width: 100px; height: 100px;" src="Upload/'.$result['product_img'].'"/>'?></td>    
                         <td><?=$result['product_size']?></td>
                         <td><?=$result['product_color_name']?></td>
-                        <td><?=$result['product_total']?></td>     
+                        <td><?=$result['product_total']?></td>    
                         <td><a href="edit_product.php?product_id=<?php echo $result['product_id']?>">Sửa</a>|
                         <a href="product_delete.php?product_id=<?php echo $result['product_id']?>">Xóa</a></td>
                     </tr>
