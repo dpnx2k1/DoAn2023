@@ -125,3 +125,14 @@ header{
     background-color: tomato;
     color: white;
 }
+.product_search{
+   margin:  16px 0;
+   width: 100%;
+}
+/* .product_search-form fieldset{
+
+} */
+.product_search-form fieldset input{
+    width: 100px;
+    height: 34px;
+}

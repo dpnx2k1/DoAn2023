@@ -11,8 +11,17 @@ include "../config/session.php";
   <div class="admin-content-right">
             <div class="admin-content-right-category-list">
                 <h1>Danh sách sản phẩm</h1>
-                <!-- <label for=""></label>
-                <input name="find_product" type="text"> -->
+                <div class="product_search">
+                    <form id="product_search-form" action="product_list.php?action=search" method="POST">
+                <fieldset>
+                    <legend>Tìm kiếm sản phẩm</legend>
+                    ID : <input style="width: 35px;" type="text" name="product_id">
+                    Tên : <input type="text" name="product_name">
+                    <input type="submit" value="Tìm">
+                </fieldset>
+                
+                    </form>
+                </div>
                 <table>
                     <tr>
                         <th>ID</th> 
