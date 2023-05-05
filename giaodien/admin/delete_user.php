@@ -25,9 +25,9 @@
     <body>
         <?php
         $error = false;
-        if (isset($_GET['id']) && !empty($_GET['id'])) {
+        if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
             $con=mysqli_connect("localhost","root","123456789","db_doan");    
-            $result = mysqli_query($con, "DELETE FROM `user` WHERE `id` = " . $_GET['id']);
+            $result = mysqli_query($con, "DELETE FROM `user` WHERE `user_id` = " . $_GET['user_id']);
             if (!$result) {
                 $error = "Không thể xóa tài khoản.";
             }

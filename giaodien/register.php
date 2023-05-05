@@ -28,21 +28,24 @@
         $error = false;
         if (isset($_GET['action']) && $_GET['action'] == 'reg') {
             if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
-                $fullname = $_POST['fullname'];
+                  $fullname = $_POST['fullname'];
                 $birthday = $_POST['birthday'];
                 $check = validateDateTime($birthday);
-                if ($check) {
-                    $birthday = strtotime($birthday);
-                    $result = mysqli_query($con, "INSERT INTO `user` (`fullname`,`user_name`, `pass_word`, `birthday`, `_status`,`email`,`sdt`,`address`, `create_time`, `last_update`) VALUES ('" . $_POST['fullname'] . "', '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), '" . $birthday . "', 1,'" . $_POST['email'] . "','" . $_POST['sdt'] . "','" . $_POST['address'] . "', " . time() . ", '" . time() . "');");
-                    if (!$result) {
-                        if (strpos(mysqli_error($con), "Duplicate entry") !== FALSE) {
-                            $error = "Tài khoản đã tồn tại. Bạn vui lòng chọn tài khoản khác.";
-                        }
-                    }
-                    mysqli_close($con);
-                } else {
-                    $error = "Ngày tháng nhập chưa chính xác";
+                 if ($check) {
+                 try {  $birthday = strtotime($birthday);
+                
+                   $result = mysqli_query($con, "INSERT INTO `user` (`fullname`,`user_name`, `pass_word`, `birthday`, `_status`,`email`,`sdt`,`address`, `create_time`, `last_update`) VALUES ('" . $_POST['fullname'] . "', '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), '" . $birthday . "', 1,'" . $_POST['email'] . "','" . $_POST['sdt'] . "','" . $_POST['address'] . "', " . time() . ", '" . time() . "');");
+                } catch (Exception $e) {
+                      $error=  $e->getMessage();
+                    //   echo $error;
                 }
+                      if (strpos($error, "Duplicate entry") !== FALSE) {
+                            $error = "Tài khoản đã tồn tại. Bạn vui lòng chọn tài khoản khác.";
+                            }
+                          mysqli_close($con);
+                } else {
+                            $error = "Ngày tháng nhập chưa chính xác";
+                            }
                 if ($error !== false) {
                     ?>
                     <div id="error-notify" class="box-content">

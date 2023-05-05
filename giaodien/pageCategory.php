@@ -36,13 +36,12 @@
     
     ?>
     <a href="<?php echo'category.php?brand_id='.$_GET['brand_id'].''; ?>&item_per_page=<?=$item_per_page?>&page=<?=$num?>"> 
-     <button>   <p><?=$num?></p></button>
+     <button><p><?=$num?></p></button>
     </a>
 
 <?php }}else{?>
-   
     <a href="<?php echo'category.php?brand_id='.$_GET['brand_id'].''; ?>&item_per_page=<?=$item_per_page?>&page=<?=$num?>"> 
-      <button class="curren_page_item">  <p><?=$num?></p></button>
+      <button class="curren_page_item"><p><?=$num?></p></button>
     </a>
     
 <?php } } ?>

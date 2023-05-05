@@ -16,7 +16,7 @@
                 <li><a href="">Sản phẩm</a>
                     <ul>
                         <li></i><a href="product_add.php">Thêm sản phẩm</a></li>
-                        <li><a href="product_list.php">danh sách sản phẩm</a></li>
+                        <li><a href="delete_filter.php">danh sách sản phẩm</a></li>
                     </ul>
                 </li>
                 <li><a href="">Quản lý trang chủ</a>

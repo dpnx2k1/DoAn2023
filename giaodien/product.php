@@ -5,9 +5,9 @@ include "./classF/product_class.php";
 
     // $session= new Session;
     // $session_Pr=$session->init();
-    // $product= new product;
+     $product= new product;
     if (isset($_GET['product_id'])) {
-
+    
         $product_id =$_GET['product_id'];
         $show_product= $product->show_product_byid($product_id);
         if ($show_product) {
@@ -113,7 +113,7 @@ include "./classF/product_class.php";
                         </div>
                     
                         <div class="product-content-right-product-button">
-                               <a href="cart.html"> <button type="submit">
+                               <a href="cart.php"> <button type="submit">
                                     <i class="fa-brands fa-shopify"></i>
                                     <p>MUA NGAY</p>
                                 </button></a>
@@ -158,9 +158,6 @@ include "./classF/product_class.php";
                                     <div class="product-content-right-product-bottom-content-center-baoquan">
                                     <?php echo $result_pr['product_pre']?>
                                     </div>
-                                    <!-- <div class="product-content-right-product-bottom-content-center-thamkhao">
-                                   
-                                    </div> -->
                                 </div>
                             </div>
                         </div>

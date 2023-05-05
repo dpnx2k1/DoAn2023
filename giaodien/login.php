@@ -27,7 +27,6 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-
         <?php
         session_start();
         $con=mysqli_connect("localhost","root","123456789","db_doan");   
@@ -62,7 +61,11 @@ and open the template in the editor.
                     <label>Password</label></br>
                     <input type="password" name="password" value="" /></br>
                     <br>
+                  <div class="user_login_or_cre"></div>
                     <input type="submit" value="Đăng nhập" />
+                    <p>bạn chưa có tài khoản ?</p>
+                    <a href="./register.php">tạo tài khoản mới</a>
+                </div>
                 </form>
             </div>
             <?php
@@ -72,7 +75,8 @@ and open the template in the editor.
             <div id="login-notify" class="box-content">
                 Xin chào <?= $currentUser['fullname'] ?><br/>
                 <a href="./edit_user.php">Đổi mật khẩu</a><br/>
-                <a href="./logout.php">Đăng xuất</a>
+                <a href="./logout.php">Đăng xuất</a><br>
+                <a href="./admin/brand_list.php">admin</a>
             </div>
         <?php } ?>
     </body>

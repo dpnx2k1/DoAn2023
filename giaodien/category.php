@@ -78,7 +78,7 @@ include "./classF/category_class.php";
                         <?php 
                             $brand_id_show=$_GET['brand_id'];
                             $item_per_page=!empty($_GET['item_per_page'])?$_GET['item_per_page']:8;
-                            $curren_page=!empty($_GET['page'])?$_GET['page']:8;
+                            $curren_page=!empty($_GET['page'])?$_GET['page']:1;
                             $offset=($curren_page-1)*$item_per_page;
                             $total=$category->show_product_total($brand_id);
                             $total=$total->num_rows; // var_dump($total);

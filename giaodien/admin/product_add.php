@@ -1,6 +1,6 @@
 <?php 
 include "header.php";
-include "slider.php";
+
 include "class/product_class.php";
 ?>
 <?php

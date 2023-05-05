@@ -22,5 +22,10 @@ class cartF {
         $result = $this ->db->select($query);
         return $result;
         }
+    public function get_sale($product_sale_id){
+            $query ="SELECT  * FROM product_sale WHERE product_sale_id='$product_sale_id'";
+             $result = $this ->db->select($query);
+             return $result;
+         }
 }
 ?>

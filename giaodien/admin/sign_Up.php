@@ -1,7 +1,7 @@
 
 <?php 
 include "header.php";
-include "slider.php";
+
 
 ?>
 <!DOCTYPE html>
@@ -48,13 +48,15 @@ and open the template in the editor.
         if (isset($_GET['action']) && $_GET['action'] == 'create') {
             if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
                 $con=mysqli_connect("localhost","root","123456789","db_doan");    
-                // Thêm bản ghi vào cơ sở dữ liệu
+               try {       
                 $result = mysqli_query($con, "INSERT INTO `user` (`user_id`, `user_name`, `pass_word`, `_status`, `create_time`, `last_update`) VALUES (NULL, '" . $_POST['username'] . "', MD5('" . $_POST['password'] . "'), 1, " . time() . ", '" . time() . "');");
-                if (!$result) {
-                    if (strpos(mysqli_error($con), "Duplicate entry") !== FALSE) {
+                 } catch (Exception $e) {
+                $error=  $e->getMessage();
+               }
+                    if (strpos($error, "Duplicate entry") !== FALSE) {
                         $error = "Tài khoản đã tồn tại. Bạn vui lòng chọn tài khoản khác.";
                     }
-                }
+                
                 mysqli_close($con);
                 if ($error !== false) {
                     ?>
