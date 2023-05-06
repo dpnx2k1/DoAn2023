@@ -19,6 +19,12 @@
                         <li><a href="delete_filter.php">danh sách sản phẩm</a></li>
                     </ul>
                 </li>
+                <li><a href="">Quản lý đơn hàng</a>
+                    <ul>
+                        <li></i><a href="order_list.php">Danh sách đơn hàng</a></li>
+                      
+                    </ul>
+                </li>
                 <li><a href="">Quản lý trang chủ</a>
                     <ul>
                         <li></i><a href="slide_add.php">Thêm ảnh silde</a></li>

@@ -154,3 +154,36 @@ header{
     width: 100px;
     height: 34px;
 }
+/* chi tiet don hang */
+.order_detail_wapper{
+    margin: 100px 350px;
+    border: 5px solid black;
+    width: 700px;
+    height: 400px;
+}
+.order-detail{
+    margin:6px 6px;
+    padding-top: 10px;
+    border: 2px solid gray;
+    width: 680px;
+    height: 380px;
+}
+.order-detail h1{
+    margin: 10px 200px;
+}
+.order-detail h3{
+    padding-left: 20px;
+}
+.order-detail label{
+    padding-left: 20px;
+    font-weight: bold;
+}
+.order-detail ul li{
+    padding-left: 30px;
+}
+.order-content{
+    margin-top: 10px;
+}
+.order_bottom{
+    margin-top: 10px;
+}

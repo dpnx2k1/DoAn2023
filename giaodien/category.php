@@ -3,15 +3,19 @@ include "headerF.php";
 include "./classF/category_class.php";
 ?>
 <?php 
+    session_start();
+        $search = isset($_GET['name']) ? $_GET['name'] : "";
+        if ($search) {   
+            $where = "WHERE `name` LIKE '%" . $search . "%'";
+        }
     $category= new categoryF;
     if (isset($_GET['brand_id'])) {
     $brand_id=$_GET['brand_id'];
+    $_SESSION['brand_id']=$brand_id;
     $show_brand_name = $category->show_brand_c($brand_id);
     if ($show_brand_name) {
     $resultC=$show_brand_name->fetch_assoc();   
    } 
-    }else {
-        header('location:category.php?brand_id=12&item_per_page=8&page=1');
     }
     
 ?>
@@ -62,9 +66,16 @@ include "./classF/category_class.php";
                          <div class="category-right-top-item ">
                             <p><?php echo $resultC['brand_name'];?></p>
                         </div>
-                   
-                        <div class="category-right-top-item ">
-                            <button><span>Bộ lọc</span><i class="fas fa-sort-down"></i></button>
+
+                        <div class="category-right-top-item-seach">
+                        <form id="product-search" method="GET">
+
+                        <input style="display: none;"  type="text" name="brand_id" value="<?= $_SESSION['brand_id']?>">
+                        <input style="display: none;"  type="text" name="item_per_page" value="2">
+                        <input style="display: none;"  type="text" name="page" value="1">
+                        <input type="text" value="<?=isset($_GET['name']) ? $_GET['name'] : ""?>" name="name" placeholder="tìm kiếm"/>
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
                         </div>
                         <div class="category-right-top-item ">
                             <select name="sapxep" id="">
@@ -80,10 +91,18 @@ include "./classF/category_class.php";
                             $item_per_page=!empty($_GET['item_per_page'])?$_GET['item_per_page']:8;
                             $curren_page=!empty($_GET['page'])?$_GET['page']:1;
                             $offset=($curren_page-1)*$item_per_page;
-                            $total=$category->show_product_total($brand_id);
-                            $total=$total->num_rows; // var_dump($total);
-                            $total_page=ceil($total/$item_per_page);
-                            $product_category=$category->show_product_by_brandid($brand_id_show,$item_per_page,$offset);
+                            
+                            if($search){
+                                $product_category=$category->show_product_by_brandid2($search,$brand_id_show,$item_per_page,$offset);
+                                $total=$category->show_product_by_brandid3($search,$brand_id_show);
+                                $total=$total->num_rows;  //var_dump($total);exit;
+                                $total_page=ceil($total/$item_per_page);
+                            }
+                            else{ 
+                                $total=$category->show_product_total($_SESSION['brand_id']);
+                                $total=$total->num_rows; // var_dump($total);exit;
+                                $total_page=ceil($total/$item_per_page);
+                                $product_category=$category->show_product_by_brandid($brand_id_show,$item_per_page,$offset);}
                             if ($product_category) {
                                while ($kq=$product_category->fetch_assoc()) {
                         

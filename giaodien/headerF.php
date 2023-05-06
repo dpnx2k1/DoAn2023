@@ -43,7 +43,6 @@
                ?>
         </div>
         <div class="orthe">
-            <li><input type="text" placeholder="Tìm kiếm "><i class="fas fa-search"></i></li>
             <li><a class="fa fa-paw"></a></li>
             <li><a class="fa fa-user"></a></li>
             <li><a class="fa fa-shopping-bag"></a></li>

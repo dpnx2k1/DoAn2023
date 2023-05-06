@@ -28,6 +28,13 @@ include "headerF.php";
        
     </div>
     <br><br><br>
+   <section class="section-info">
+        <div class="container">
+          <div class="main-info">
+            <h4>Spring 2023</h4>
+          </div>
+        </div>
+   </section>
 <?php 
 include "footerF.php";
 ?>

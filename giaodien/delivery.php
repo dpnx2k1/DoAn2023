@@ -30,16 +30,22 @@ if (session_id() === ''){
                 elseif (empty($_POST['diachi'])) {
                     $error="Bạn chưa nhập số địa chỉ";
                 }
-                elseif (empty( $_SESSION['quantity'][0])) {
+                elseif (empty($_SESSION['cart'])) {
                     $error="Giỏ hàng rỗng";
-                }elseif($error==false && !empty($_SESSION['quantity'])){
-                        $insert_order=$delivery->insert_order();
+                }elseif($error==false && !empty($_SESSION['cart'])){
+                        $addr="";
+                    //    .="".$_POST['provinces'].",".$_POST['districts'].",".$_POST['wards']."";
+                        $provines_n=$delivery->get_name_p();
+                        $districts_n=$delivery->get_name_d();
+                        $wards=$delivery->get_name_w();
+                        
+                        $addr.="".$provines_n.",".$districts_n.",".$wards."";
+                        $insert_order=$delivery->insert_order($addr);
                         $order_id=$delivery->get_id_order();
                         // var_dump($order_id);exit;
                             $orderProducts=array();
                             while ($row = mysqli_fetch_array($show_product_list)) {
-                                $orderProducts[] = $row;
-                                
+                                $orderProducts[] = $row;  
                             }
                                 $insert_str="";
                                 foreach ($orderProducts as $key => $product) {
@@ -133,10 +139,11 @@ if (session_id() === ''){
                                        while ($result=$show_provinces->fetch_assoc()) {
                                                  
                                      ?>
+                              
                                  <option value="<?php echo $result['code_p'] ?>"><?php echo $result['name_p'] ?></option>
                                <?php     }
                                          } ?>
-                                </select>
+                                </select> 
                             </div>
                             <div class="delivery-content-left-input-top-item">
                                 <label for=""> Quận huyện <span style="color: red;">*</span></label>
@@ -178,8 +185,7 @@ if (session_id() === ''){
                             
                             while ($row= $show_product_list->fetch_assoc()) {  
                                 $i++;
-                                $_SESSION['quantity'][$i]=$_SESSION['cart'][$row['product_id']];
-
+                        
                                 $pay=$row['product_price_pro']*$_SESSION['cart'][$row['product_id']];
                                 $total_pay+=$pay;
                                  

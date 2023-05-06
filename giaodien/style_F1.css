@@ -212,6 +212,7 @@ header:hover{
 }
 .category-right{
     width: 80%;
+  
 }
 .category-right-top-item p{
   flex:2;
@@ -224,15 +225,32 @@ header:hover{
     flex: 1;
     padding: 0 12px;
 }
-.category-right-top-item button{
-    width: 100%;
+.category-right-top-item-seach{
+    flex: 1;
+    padding: 0 12px;
+}
+.category-right-top-item-seach input{
+    width: 70%;
+    height: 35px;
+
+}
+.category-right-top-item-seach button{
+    width: 15%;
+    height: 34px;
+    padding: 0px 15px;
+   background-color: #ffff;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+/* .category-right-top-item button{
+    width: 20%;
     padding: 10px 15px;
     display: flex; 
     justify-content: space-between;
     background-color: #ffff;
     border: 1px solid gray;
     cursor: pointer;
-}
+} */
 .category-right-top-item select{
     width: 100%;
     padding: 10px 15px;
@@ -926,4 +944,17 @@ header:hover{
 .pay-content-right-tttt button:hover{
     background-color: black;
     color: white;
+}
+/* index */
+.main-info{
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto 64px;
+}
+.main-info h4{
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 32px;
+    color: #221F20;
+    margin-bottom: 24px;
 }

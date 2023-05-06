@@ -8,6 +8,7 @@ include "./classF/delivery_class.php";
             if ($show_districts_ajax) {
                     while ($resultA = $show_districts_ajax->fetch_assoc()) {                                        
             ?>
+          
           <option value="<?php echo $resultA['code_d'] ?>"><?php echo $resultA['name_d'] ?></option>
             <?php 
               }
