@@ -9,9 +9,10 @@ and open the template in the editor.
         <title>Tạo form đăng ký, đăng nhập hệ thống</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style_F1.css">
         <style>
             .box-content{
-                margin: 0 auto;
+                margin: 100px auto;
                 width: 800px;
                 border: 1px solid #ccc;
                 text-align: center;
@@ -81,3 +82,4 @@ and open the template in the editor.
         <?php } ?>
     </body>
 </html>
+<?php include "footerF.php"; ?>

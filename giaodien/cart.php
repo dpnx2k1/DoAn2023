@@ -200,12 +200,12 @@ include "classF/product_class.php";
                         <?php  } ?>
                     </div>
                     <div class="cart-content-right-button">
-                       <button> <a href="./category.php">TIẾP TỤC MUA SẮM</a></button>
+                       <button> <a href="./category.php?brand_id=12&item_per_page=8&page=1">TIẾP TỤC MUA SẮM</a></button>
                         <button type="submit" name="order_click">THANH TOÁN</button>
                     </div>
                     <div class="cart-content-right-login">
                         <p>TÀI KHOẢN</p>
-                        <p>Hãy <a href="http://localhost:3000/giaodien/login.html " style="color: gray;">đăng nhập</a> tài khoản của bạn để tích điểm thành viên</p>
+                        <p>Hãy <a href="login.php " style="color: gray;">đăng nhập</a> tài khoản của bạn để tích điểm thành viên</p>
                     </div>
                 </div>
             </div>

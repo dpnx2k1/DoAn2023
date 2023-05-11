@@ -71,7 +71,7 @@ include "./classF/category_class.php";
                         <form id="product-search" method="GET">
 
                         <input style="display: none;"  type="text" name="brand_id" value="<?= $_SESSION['brand_id']?>">
-                        <input style="display: none;"  type="text" name="item_per_page" value="2">
+                        <input style="display: none;"  type="text" name="item_per_page" value="8">
                         <input style="display: none;"  type="text" name="page" value="1">
                         <input type="text" value="<?=isset($_GET['name']) ? $_GET['name'] : ""?>" name="name" placeholder="tìm kiếm"/>
                         <button type="submit"><i class="fas fa-search"></i></button>

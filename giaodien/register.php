@@ -4,13 +4,15 @@
         <title>Tạo form đăng ký, đăng nhập hệ thống</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style_F1.css">
         <style>
             .box-content{
-                margin: 0 auto;
+                margin: 0 auto 100px;
                 width: 800px;
                 border: 1px solid #ccc;
                 text-align: center;
                 padding: 20px;
+                
             }
             #user_register form{
                 width: 200px;
@@ -95,3 +97,4 @@
         ?>
     </body>
 </html>
+<?php include "footerF.php"; ?>
