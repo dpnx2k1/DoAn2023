@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>Tạo form đăng ký, đăng nhập hệ thống</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style_F1.css">
+        <link rel="stylesheet" href="style.css">
         <style>
             .box-content{
                 margin: 100px auto;
@@ -33,12 +33,13 @@ and open the template in the editor.
         $con=mysqli_connect("localhost","root","123456789","db_doan");   
         $error = false;
         if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
-            $result = mysqli_query($con, "Select `user_id`,`user_name`,`fullname`,`birthday` from `user` WHERE (`user_name` ='" . $_POST['username'] . "' AND `pass_word` = md5('" . $_POST['password'] . "'))");
+            $result = mysqli_query($con, "Select * from `user` WHERE (`user_name` ='" . $_POST['username'] . "' AND `pass_word` = md5('" . $_POST['password'] . "'))");
             if (!$result) {
                 $error = mysqli_error($con);
             } else {
                 $user = mysqli_fetch_assoc($result);
                 $_SESSION['current_user'] = $user;
+                // var_dump($_SESSION['current_user']);exit();
             }
             mysqli_close($con);
             if ($error !== false || $result->num_rows == 0) {
@@ -78,6 +79,7 @@ and open the template in the editor.
                 <a href="./edit_user.php">Đổi mật khẩu</a><br/>
                 <a href="./logout.php">Đăng xuất</a><br>
                 <a href="./admin/brand_list.php">admin</a>
+                <a href="user_infor.php">user_infor</a>
             </div>
         <?php } ?>
     </body>

@@ -69,8 +69,15 @@ include "./classF/product_class.php";
                             <p>MSP:<?php echo $result_pr['product_id']; ?></p>   
                         </div>
                         <div class="product-content-right-product-price row"> 
-                             <p><?php echo $result_pr['product_price']; ?><sup>đ</sup></p>
-                             <p><?php echo $result_pr['product_price_pro']; ?><sup>đ</sup></p>
+                                
+                             <?php if(!empty($result_pr['product_price_pro'])) {
+                             ?>
+                             <p style="text-decoration: solid line-through;"><?=number_format($result_pr['product_price'])?><sup>đ</sup></p>
+                             <p><?php echo number_format($result_pr['product_price_pro']); ?><sup>đ</sup></p>
+                            <?php }else{ ?>
+                            <p><?php echo number_format($result_pr['product_price']); ?><sup>đ</sup></p>
+                           <?php  } ?>
+                            
                         </div>
                         <div class="product-content-right-product-color">
                             <p><span style="font-weight: bold;">Màu Sắc :</span>

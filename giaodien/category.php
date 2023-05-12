@@ -16,14 +16,14 @@ include "./classF/category_class.php";
     if ($show_brand_name) {
     $resultC=$show_brand_name->fetch_assoc();   
    } 
-    }
+    
     
 ?>
  <!---------------------------------- category ------------------------------------>
  <section class="category">
         <div class="container">
             <div class="category-top row">
-                <p>Trang chủ</p><span>&#8594;</span>
+                <p><a href="index.php">Trang chủ</a></p><span>&#8594;</span>
                 <p>
                 <?php 
                     $category_id=$resultC['category_id'];
@@ -95,32 +95,43 @@ include "./classF/category_class.php";
                             if($search){
                                 $product_category=$category->show_product_by_brandid2($search,$brand_id_show,$item_per_page,$offset);
                                 $total=$category->show_product_by_brandid3($search,$brand_id_show);
-                                $total=$total->num_rows;  //var_dump($total);exit;
+                                if ($total) {
+                                   $total=$total->num_rows;  //var_dump($total);exit;
+                                }
                                 $total_page=ceil($total/$item_per_page);
                             }
                             else{ 
-                                $total=$category->show_product_total($_SESSION['brand_id']);
-                                $total=$total->num_rows; // var_dump($total);exit;
+                              $total =$category->show_product_total($_SESSION['brand_id']);
+                                if ( $total) {
+                                     $total=$total->num_rows;// var_dump($total);exit;
+                                }      
                                 $total_page=ceil($total/$item_per_page);
                                 $product_category=$category->show_product_by_brandid($brand_id_show,$item_per_page,$offset);}
                             if ($product_category) {
                                while ($kq=$product_category->fetch_assoc()) {
                         
                         ?>
-                            <div  class="category-right-content-item ">
+                            <div  class="category-right-content-item">
                                 <a href=<?php echo'product.php?product_id='.$kq['product_id'].''; ?>><img src=<?php echo'"admin/Upload/'.$kq['product_img'].'"'; ?> alt=""></a>
-                                <h1><?php echo $kq['product_name']  ?></h1>
-                                <p><?php echo $kq['product_price']  ?><sup>đ</sup></p>
+                           
+                                <h3 class="cart_title"><?php echo $kq['product_name']  ?></h3>
+                          
+                            <?php if(!empty($kq['product_price_pro'])) {
+                             ?>
+                             <div class="text"><h4><?=number_format($kq['product_price'])?><sup>đ</sup></h4></div> 
+                             <p><?php echo number_format($kq['product_price_pro']); ?><sup>đ</sup></p>
+                            <?php }else{ ?>
+                            <h4><?php echo number_format($kq['product_price']); ?><sup>đ</sup></h4>
+                           <?php  } ?>
+                        
                             </div>
+                    
                             
                          <?php }} ?>
                  
                                   
                  </div>
                  <div class="category-right-bottom row">
-                            <div class="category-right-bottom-item">
-                                <p>Hiển thị 2 <span>|</span> 4 sản phẩm</p>
-                            </div>
                             <div class="category-right-bottom-item">
                                 <?php include "./pageCategory.php"; ?>
                             </div>
@@ -129,5 +140,5 @@ include "./classF/category_class.php";
     </div>
     </section>
 <?php 
-include "footerF.php";
+include "footerF.php";}
 ?>

@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/34e972a4c1.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style_F1.css">
+    <link rel="stylesheet" href="style_F.css">
     <title>DPN Store</title>
+    <!--Start of Fchat.vn-->
+    <script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=6459be2fc86ea1395e6b9736" async="async"></script>
+    <!--End of Fchat.vn-->
 </head>
 <?php 
     include "./classF/index_class.php";
@@ -44,7 +47,7 @@
         </div>
         <div class="orthe">
             <li><a class="fa fa-paw"></a></li>
-            <li><a class="fa fa-user"></a></li>
+            <li><a href="login.php" class="fa fa-user"></a></li>
             <li><a class="fa fa-shopping-bag"></a></li>
         </div>
     </header>

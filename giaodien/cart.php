@@ -76,6 +76,7 @@ include "classF/product_class.php";
 
   <!-- cart -->
   <form action="cart.php?action=submit" method="POST">
+
   <section class="cart">
         <div class="container">
             <div class="cart-top-wrap">
@@ -90,6 +91,7 @@ include "classF/product_class.php";
                         <i class="fa-solid fa-money-bill-transfer" ></i>
                     </div>    
                 </div>
+
             </div>
         </div>
         <div class="container">
@@ -110,7 +112,13 @@ include "classF/product_class.php";
                             
                             while ($row= $show_product_list->fetch_assoc()) {  
                                 $i++;
-                                $pay=$row['product_price_pro']*$_SESSION['cart'][$row['product_id']];
+                                $price=0;
+                                if (!empty($row['product_price_pro'])) {
+                                 $price=$row['product_price_pro'];
+                                }else{
+                                    $price=$row['product_price'];
+                                }
+                                $pay=$price*$_SESSION['cart'][$row['product_id']];
                                 $total_pay+=$pay;
                       ?>  
                         <tr>
@@ -132,7 +140,7 @@ include "classF/product_class.php";
                                 <input type="number" min="1" value="<?php echo $_SESSION['cart'][$row['product_id']];?>"  name="<?php echo 'quantity_pr['.$row['product_id'].']'?>" >
                             </td>
 
-                            <td><p><?php echo $row['product_price_pro']*$_SESSION['cart'][$row['product_id']]; ?><sup>đ</sup>
+                            <td><p><?php echo number_format($price*$_SESSION['cart'][$row['product_id']]); ?><sup>đ</sup>
                             </p></td>
                             <td><span><a href="cart.php?action=delete&id=<?php echo $row['product_id']?>">X</a></span></td>
                         </tr>
@@ -142,7 +150,7 @@ include "classF/product_class.php";
                             <td colspan="5"><?php //var_dump($_POST); ?></td>
                         </tr> -->
                         <tr><td colspan="6">
-                         <button type="submit" name="update_click" value="CẬP NHẬT GIỎ HÀNG">CẬP NHẬT GIỎ HÀNG</button>
+                         <button onclick="myFunction()" type="submit" name="update_click" value="CẬP NHẬT GIỎ HÀNG">CẬP NHẬT GIỎ HÀNG</button>
                          <p style="color: tomato;margin-left: 20%;margin-top: 20px;">
                             Nếu bạn thay đổi số lượng sản phẩm hãy cập nhật lại giỏ hàng trước khi mua nhé !
                         </p>
@@ -170,7 +178,7 @@ include "classF/product_class.php";
                         <!-- ------------------------------- -->
                         <tr>
                             <td>TẠM TÍNH</td>
-                            <td><p><?=$total_pay?> <sup>đ</sup></p></td>
+                            <td><p><?=number_format($total_pay)?> <sup>đ</sup></p></td>
                         </tr> 
                           <!-- sale -->
                         </tr>
@@ -190,17 +198,17 @@ include "classF/product_class.php";
                         <tr>
                            <td>TỔNG TIỀN HÀNG</td>
                           
-                            <td><p style="color: black; font-weight:bold;"><?=$total_last?> <sup>đ</sup></p></td>
+                            <td><p style="color: black; font-weight:bold;"><?=number_format($total_last)?> <sup>đ</sup></p></td>
                         </tr>
                     </table>
                     <div class="cart-content-right-text">
                          <?php if ($total_pay < 1000000) { $them=1000000 - $total_pay?>
                         <p>bạn sẽ được miễn phí ship đơn hàng nếu tổng tiền hàng của bạn lớn hơn 1.000.000<sup>đ</sup></p>
-                        <p style="color:red;font-weight:bold">Mua thêm <span style="font-size: 18px;"><?=$them?></span> <sub>đ</sub> để được miễn phí SHIP</p>
+                        <p style="color:red;font-weight:bold">Mua thêm <span style="font-size: 18px;"><?=number_format($them)?></span> <sub>đ</sub> để được miễn phí SHIP</p>
                         <?php  } ?>
                     </div>
                     <div class="cart-content-right-button">
-                       <button> <a href="./category.php?brand_id=12&item_per_page=8&page=1">TIẾP TỤC MUA SẮM</a></button>
+                    <a href="./category.php?brand_id=12&item_per_page=8&page=1"> TIẾP TỤC MUA SẮM</a>
                         <button type="submit" name="order_click">THANH TOÁN</button>
                     </div>
                     <div class="cart-content-right-login">
@@ -212,6 +220,14 @@ include "classF/product_class.php";
         </div>
     </section>
     </form>
+    <?php if (isset($_POST['update_click'])) {
+        ?>
+        <script>
+            function myFunction() {
+              alert("Cập Nhật Thành Công !");
+            }
+        </script>
+   <?php }?>
 
 <?php
 include "footerF.php";

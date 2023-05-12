@@ -263,24 +263,54 @@ header:hover{
 .category-right-content {
     margin-top: 20px;
     justify-content: space-between;
+    margin-left: -12px;
 }
+
 .category-right-content-item {
-    display: block;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100,111,0.2) 0px 7px 29px 0px;
+    width: calc(25% - 12px);
+    margin-left: 12px;
+    margin-top: 10px;
+    /* display: block;
     width: calc(25% - 12px);
     text-align: center;
-    padding: 12px 0px;
+    padding: 12px 0px; */
 }
-.category-right-content-item h1 {
-    font-size: 12px;
+.category-right-content-item h3 {
+    /* font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 6px;
-    color: #333333;
+    color: #333333; */
+    padding-top: 12px;
+    padding-left: 80px;
+    margin-bottom: 6px;
+}
+.category-right-content-item h4{
+    font-weight: 100;
+   
+    padding-left: 100px;
+    font-size: 16px; 
 }
 .category-right-content-item img{
+    height: 280px;
     width: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 .category-right-content-item p{
-    font-size: 12px;
+    padding-left: 100px;
+    padding-bottom: 50px;
+    font-size: 16px;   
+    font-weight: 100;
+}
+
+.text h4{
+    font-weight: 100;
+    font-size: 16px; 
+    text-decoration: solid line-through;
 }
 .category-right-bottom{
     justify-content: space-between;
@@ -377,21 +407,13 @@ header:hover{
     color: #000;
     font-size: 16px;
 }
-.product-content-right-product-price p:first-child{
+.product-content-right-product-price p{
     margin: 12px 10px 0px 0px;
     font-size: 20px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    text-decoration: solid line-through;
-    
 }
-.product-content-right-product-price p:last-child{
-    margin: 12px 0;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    
-}
+
 .product-content-right-product-color-img>img{
     width: 30px;
     height: 30px;
@@ -680,22 +702,25 @@ header:hover{
     cursor: pointer;
     
 }
-.cart-content-right-button button:first-child{
-   
+.cart-content-right-button>a{
+    width: 200px;
+    height: 35px;
     background-color: #ffff;
     border: 2px solid black;
     margin-right: 20px;
+    padding-top: 10px;
+   
 }
-.cart-content-right-button button:first-child:hover{
+.cart-content-right-button>a:hover{
     background-color: #0DB7EA
 }
-.cart-content-right-button button:last-child{
+.cart-content-right-button button{
     background-color: tomato;
     border: 2px solid black;
     margin-right: 20px;
   
 }
-.cart-content-right-button button:last-child:hover{
+.cart-content-right-button button:hover{
     background-color:#fff;
 }
 .cart-content-right-login{
@@ -957,4 +982,43 @@ header:hover{
     line-height: 32px;
     color: #221F20;
     margin-bottom: 24px;
+}
+/* user */
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+body {
+	background: #f9f9f9;
+	font-family: "Roboto", sans-serif;
+}
+
+.shadow {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.profile-tab-nav {
+	min-width: 250px;
+}
+
+.tab-content {
+	flex: 1;
+}
+
+.form-group {
+	margin-bottom: 24px;
+}
+
+.nav-pills a.nav-link {
+	padding: 15px 20px;
+	border-bottom: 1px solid #ddd;
+	border-radius: 0;
+	color: #333;
+}
+.nav-pills a.nav-link i {
+	width: 20px;
+}
+
+.img-circle img {
+	height: 100px;
+	width: 100px;
+	border-radius: 100%;
+	border: 5px solid #fff;
 }

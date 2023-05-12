@@ -9,6 +9,7 @@ if (session_id() === ''){
     $error=false;
     $success;
     $i=0;
+    $price=0;
     $str= implode(",",array_keys($_SESSION['cart']));
     if (isset($_SESSION['cart'])) {
        if ($str!="") {
@@ -51,7 +52,7 @@ if (session_id() === ''){
                                 foreach ($orderProducts as $key => $product) {
                                     $insert_str .= "(NULL, '" . $order_id . "', '" . $product['product_id'] . "',
                                      '" . $_POST['quantity'][$product['product_id']] . "',
-                                      '" . $product['product_price_pro'] . "', '" . time() . "', '" . time() . "')";
+                                      '" . $price . "', '" . time() . "', '" . time() . "')";
                                    if ($key != count($orderProducts) - 1) {
                                         $insert_str .=",";
                                    }
@@ -185,8 +186,13 @@ if (session_id() === ''){
                             
                             while ($row= $show_product_list->fetch_assoc()) {  
                                 $i++;
-                        
-                                $pay=$row['product_price_pro']*$_SESSION['cart'][$row['product_id']];
+                              
+                                if (!empty($row['product_price_pro'])) {
+                                 $price=$row['product_price_pro'];
+                                }else{
+                                    $price=$row['product_price'];
+                                }
+                                $pay=$price*$_SESSION['cart'][$row['product_id']];
                                 $total_pay+=$pay;
                                  
                       ?>  
@@ -198,7 +204,7 @@ if (session_id() === ''){
                             <input type="text" style="display: none;" 
                             name="<?php echo 'quantity['.$row['product_id'].']'?>" 
                             value="<?=$_SESSION['cart'][$row['product_id']]?>">
-                            <td><p><?php echo $row['product_price_pro']*$_SESSION['cart'][$row['product_id']]; ?><sup>đ</sup></p></td>
+                            <td><p><?php $price*$_SESSION['cart'][$row['product_id']]; ?><sup>đ</sup></p></td>
                         </tr>
 
                         <?php      }
@@ -213,12 +219,17 @@ if (session_id() === ''){
                         </tr>
                         <tr>
                             <td style="font-weight: bold;" colspan="2">Giảm Giá</td>
-                            <td style="font-weight: bold"><p><?php echo $_SESSION['sale_price']?> <sup>đ</sup></p></td>
+                            <td style="font-weight: bold"><p><?php if(!empty($_SESSION['sale_price'])){echo $_SESSION['sale_price']?> <sup>đ</sup> <?php } ?></p></td>
                         </tr>
 
                         <tr>
                             <td style="font-weight: bold;" colspan="2">Tổng Tiền Hàng</td>
-                            <td style="font-weight: bold"><p><?php $_SESSION['tong'] = $total_pay + $thue - $_SESSION['sale_price']; echo $_SESSION['tong']?><sup>đ</sup></p></td>
+                            <td style="font-weight: bold"><p><?php if(!empty($_SESSION['sale_price'])){
+                                                                     $_SESSION['tong'] = $total_pay + $thue - $_SESSION['sale_price'];
+                                                                    }else{
+                                                                        $_SESSION['tong'] =$total_pay + $thue;
+                                                                    }
+                                                                      echo $_SESSION['tong']?><sup>đ</sup></p></td>
                         </tr>
                     </table>
                 </div>
