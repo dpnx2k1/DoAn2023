@@ -1,9 +1,10 @@
-<?php 
+<?php
 include "header.php";
 
 include "class/product_class.php";
 ?>
 <?php
+
     $product = new product;
     if($_SERVER["REQUEST_METHOD"] === "POST") {
        

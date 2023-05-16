@@ -1,9 +1,12 @@
 <?php 
+
 include "header.php";
+
 
 include "class/brand_class.php";
 ?>
 <?php
+    if($_SESSION['current_user']['_status']==1){
     $brand = new brand;
     $show_brand= $brand->show_brand();
 ?>
@@ -43,3 +46,4 @@ include "class/brand_class.php";
     </section>
 </body>
 </html>
+<?php } ?>

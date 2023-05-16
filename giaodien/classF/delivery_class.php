@@ -53,33 +53,33 @@ class delivery {
         $result = $this ->db->select($query);
         return $result;
         }
-    public function insert_order($addr_){
-        $user_name =$_POST['hoten'];
-        $sdt=$_POST['sdt'];
-        $address_detail=$_POST['diachi'];
+    // public function insert_order($addr_){
+    //     $user_name =$_POST['hoten'];
+    //     $sdt=$_POST['sdt'];
+    //     $address_detail=$_POST['diachi'];
         
-        $note=$_POST['note'];
-        $total=$_SESSION['tong'];
-        $query = "INSERT INTO `orders`(
-            `order_id`,
-            `user_name`,
-            `sdt`,
-            `address_`,
-           `address_detail`,
-            `note`,
-            `total`,
-            `created_time`,
-            `last_updated`
-    ) VALUES(null,'$user_name','$sdt','$addr_','$address_detail','$note','$total','".time()."','".time()."')";
-    $result = $this ->db->insert($query);
-    }
+    //     $note=$_POST['note'];
+    //     $total=$_SESSION['tong'];
+    //     $query = "INSERT INTO `orders`(
+    //         `order_id`,
+    //         `user_name`,
+    //         `sdt`,
+    //         `address_`,
+    //        `address_detail`,
+    //         `note`,
+    //         `total`,
+    //         `created_time`,
+    //         `last_updated`
+    // ) VALUES(null,'$user_name','$sdt','$addr_','$address_detail','$note','$total','".time()."','".time()."')";
+    // $result = $this ->db->insert($query);
+    // }
 
-    public function get_id_order(){
-        $query="SELECT * FROM `orders` ORDER BY `order_id` DESC LIMIT 1";
-        $result = $this ->db->select($query)-> fetch_assoc();
-        $product_id = $result['order_id'];
-        return $product_id;
-    }
+    // public function get_id_order(){
+    //     $query="SELECT * FROM `orders` ORDER BY `order_id` DESC LIMIT 1";
+    //     $result = $this ->db->select($query)-> fetch_assoc();
+    //     $product_id = $result['order_id'];
+    //     return $product_id;
+    // }
 
    
     public function  insert_order_detail($str){

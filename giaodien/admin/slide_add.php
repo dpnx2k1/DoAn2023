@@ -2,7 +2,7 @@
 include "header.php";
 include "./class/slide_class.php";
 ?>
-<?php
+<?php if($_SESSION['current_user']['_status']==1){
     $slide = new slide;
     if($_SERVER["REQUEST_METHOD"] === "POST") {
         $insert_slide = $slide->insert_slide($_FILES);
@@ -21,3 +21,4 @@ include "./class/slide_class.php";
     </section>
 </body>
 </html>
+<?php } ?>

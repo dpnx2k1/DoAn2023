@@ -1,5 +1,5 @@
 
-<?php 
+<?php  
 include "header.php";
 
 
@@ -17,7 +17,8 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <?php
+        <?php 
+        if($_SESSION['current_user']['_status']==1){
         $con=mysqli_connect("localhost","root","123456789","db_doan"); 
         $result = mysqli_query($con, "SELECT * FROM user");
         mysqli_close($con);
@@ -67,3 +68,4 @@ and open the template in the editor.
         </div>
     </body>
 </html>
+<?php } ?>

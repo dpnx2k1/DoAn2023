@@ -64,7 +64,9 @@ and open the template in the editor.
                 <?php
             }
         } else {
-            session_start();
+            if (session_id()=='') {
+                session_start();
+              }
             $user = $_SESSION['current_user'];
             if (!empty($user)) {
                 ?>

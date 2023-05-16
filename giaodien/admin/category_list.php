@@ -4,6 +4,7 @@ include "header.php";
 include "class/category_class.php";
 ?>
 <?php
+if($_SESSION['current_user']['_status']==1){
     $category = new category;
     $show_category= $category->show_category();
 ?>
@@ -39,3 +40,4 @@ include "class/category_class.php";
     </section>
 </body>
 </html>
+<?php } ?>

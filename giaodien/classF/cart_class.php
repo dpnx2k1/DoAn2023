@@ -27,5 +27,10 @@ class cartF {
              $result = $this ->db->select($query);
              return $result;
          }
+    public function get_point($user_id){
+            $query ="SELECT  * FROM user WHERE user_id='$user_id'";
+             $result = $this ->db->select($query);
+             return $result;
+         }
 }
 ?>

@@ -1,12 +1,13 @@
 <?php
 
-use LDAP\Result;
+
 
 include "header.php";
 
 include "class/brand_class.php";
 ?>
-<?php
+<?php 
+
     $brand = new brand;
     if(!isset($_GET["brand_id"]) || $_GET["brand_id"] == NULL){
         echo "<script>window.location='brand_list.php'</script>";

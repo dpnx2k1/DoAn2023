@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>Tạo form đăng ký, đăng nhập hệ thống</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style_F2.css">
         <style>
             .box-content{
                 margin: 100px auto;
@@ -28,8 +28,9 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <?php
-        session_start();
+        <?php if (session_id()=='') {
+          session_start();
+        }
         $con=mysqli_connect("localhost","root","123456789","db_doan");   
         $error = false;
         if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
@@ -72,14 +73,15 @@ and open the template in the editor.
             </div>
             <?php
         } else {
-            $currentUser = $_SESSION['current_user'];
+            // $currentUser = $_SESSION['current_user'];
+            header("location:index.php");
             ?>
             <div id="login-notify" class="box-content">
-                Xin chào <?= $currentUser['fullname'] ?><br/>
-                <a href="./edit_user.php">Đổi mật khẩu</a><br/>
-                <a href="./logout.php">Đăng xuất</a><br>
-                <a href="./admin/brand_list.php">admin</a>
-                <a href="user_infor.php">user_infor</a>
+              
+                
+                
+                
+                <!-- <a style="color: #33CCFF;" href="index.php">Trang chủ</a><br> -->
             </div>
         <?php } ?>
     </body>

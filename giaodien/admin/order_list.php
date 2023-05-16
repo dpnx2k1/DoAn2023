@@ -4,11 +4,11 @@ include "header.php";
 
 $con=mysqli_connect("localhost","root","123456789","db_doan");   
 
-if (!empty($_SESSION['current_user'])) {
-    
+
+    if($_SESSION['current_user']['_status']==1){
     if(!empty($_GET['action']) && $_GET['action'] == 'search' && !empty($_POST)){
         $_SESSION['order_filter'] = $_POST;
-        header('Location: order_list.php').exit;
+        // header('Location: order_list.php');
     }
     if(!empty($_SESSION['order_filter'])){
         $where = "";
@@ -18,7 +18,7 @@ if (!empty($_SESSION['current_user'])) {
                 $result=str_replace("\\",'%',$kq);
                 // echo $result;
                 switch ($field) {
-                    case 'order_name':
+                    case 'user_name':
                         $where .= (!empty($where))? " AND "."`".$field."` LIKE '%".$result."%'" : "`".$field."` LIKE '%".$result."%'";
                     break;
                     default:
@@ -42,7 +42,8 @@ if (!empty($_SESSION['current_user'])) {
     }else{
         $orders = mysqli_query($con, "SELECT * FROM `orders` ORDER BY `order_id` DESC LIMIT " . $item_per_page . " OFFSET " . $offset);
     }
-    mysqli_close($con);
+   // $a=$orders->fetch_all();
+   // print_r($a);exit;
     ?>
   <div class="admin-content-right">
             <div class="admin-content-right-category-list">
@@ -64,12 +65,14 @@ if (!empty($_SESSION['current_user'])) {
                         <th>Địa chỉ</th>
                         <th>SDT</th>
                         <th>Ngày tạo</th>
+                        <th>Trạng thái</th>
+                        <th>Thao Tác</th>
                         <th>in đơn</th>
                         
                     </tr>
                     <?php
+                         
                         if ($orders) {
-              
                             while ($result = $orders->fetch_assoc()) {           
                          
                     ?>
@@ -79,27 +82,50 @@ if (!empty($_SESSION['current_user'])) {
                         <td><?php echo "".$result['address_']."-".$result['address_detail']."";?></td>
                         <td><?=$result['sdt']?></td>
                         <td><?=date("d/m/y H:i",$result['created_time'])?></td>
+                        <td><?php $result['status_'];
+                                $str='';
+                                if ($result['status_']==1) {
+                                   $str="Chuẩn Bị";
+                                }
+                                if ($result['status_']==2) {
+                                    $str="Đang Giao";
+                                 }
+                                 if ($result['status_']==3) {
+                                    $str="Đã Giao";
+                                 }
+                                 if ($result['status_']==4) {
+                                    $str="Hàng Hoàn";
+                                 }
+                                
+                        ?><p><?=$str?></p></td>
+                        <td><a href="order_update.php?id=<?=$result['order_id']?>">Update</a>|
+                        <a href="order_delete.php?id=<?=$result['order_id']?>">xóa</a>
+                        </td>
+
                         <td><a href="oder_printing.php?id=<?=$result['order_id']?>" target="_blank">In</a></td>
 
-
                     </tr>
-                    <?php
+                    <?php 
                           }
                         }
                     ?>
                 </table>
+                ?>
+            
               <div class="page_ad_pr"> <?php
                  include './pagination.php';
                 ?>
-            </div> 
+            </div>
+          
+            <?php 
+                  
+            mysqli_close($con);
+           ?>
             </div>
         </div>
-        <?php }else {
-           echo "bạn chưa đăng nhập";?>
-           <a href="../login.php">đăng nhập</a>
-           <?php 
-            } ?>
+                        
         </section>
 </body>
 
 </html>
+<?php } ?>

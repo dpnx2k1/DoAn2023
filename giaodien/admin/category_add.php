@@ -1,9 +1,11 @@
 <?php 
+
 include "header.php";
 
 include "class/category_class.php";
 ?>
 <?php
+    if($_SESSION['current_user']['_status']==1){
     $category = new category;
     if($_SERVER["REQUEST_METHOD"] === "POST") {
         $category_name = $_POST["category_name"];
@@ -22,3 +24,4 @@ include "class/category_class.php";
     </section>
 </body>
 </html>
+<?php } ?> 

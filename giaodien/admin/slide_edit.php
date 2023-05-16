@@ -3,6 +3,7 @@ include "header.php";
 include "./class/slide_class.php";
 ?>
 <?php
+   
     $slide = new slide;
     if($_SERVER["REQUEST_METHOD"] === "POST") {
         $update_slide = $slide->update_slide();

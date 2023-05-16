@@ -11,7 +11,13 @@
 <?php
             session_start();
             $user = $_SESSION['current_user'];
-            var_dump($user);
+			include "./classF/user_class.php";
+			$user2=new user;
+			$show=$user2->show_user($user['user_id']);
+			if ($show) {
+				$kq=$show->fetch_assoc();
+			}
+          //  var_dump($user);
 ?>
 <body>
     <a href="login.php">login</a>
@@ -37,64 +43,85 @@
 						</a>
 					</div>
 				</div>
+				
+              
 				<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+			<?php	
+				if (!empty($user)) {
+					if (!empty($kq)) {
+					
+               	 ?>
+				
 					<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-                    <form action="./user_infor_setting.php?action=setting" method="Post" autocomplete="off">
+                    <form action="./edit_pass.php?action=user" method="Post" autocomplete="off">
+					<input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
 						<h3 class="mb-4">Account Settings</h3>
 						<div class="row">
-							<div class="col-md-6">
+						<div class="col-md-6">
 								<div class="form-group">
-								  	<label>First Name</label>
-								  	<input type="text" class="form-control" value="<?=$user['first_name']?>">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-								  	<label>Last Name</label>
-								  	<input type="text" class="form-control" value="<?=$user['last_name']?>">
+								  	<label>User Name </label>
+								  	<input type="text" name="username" class="form-control" value="<?=$kq['user_name']?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Email</label>
-								  	<input type="text" class="form-control" value="kiranacharya287@gmail.com">
+								  	<input type="text" name="email" class="form-control" value="<?=$kq['email']?>">
 								</div>
 							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>First Name</label>
+								  	<input type="text" name="first_name" class="form-control" value="<?=$kq['first_name']?>">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  	<label>Last Name</label>
+								  	<input type="text" name="last_name" class="form-control" value="<?=$kq['last_name']?>">
+								</div>
+							</div>
+							
 							<div class="col-md-6">
 								<div class="form-group">
 								  	<label>Phone number</label>
-								  	<input type="text" class="form-control" value="+91 9876543215">
+								  	<input type="text" name="sdt" class="form-control" value="<?=$kq['sdt']?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Company</label>
-								  	<input type="text" class="form-control" value="Kiran Workspace">
+								  	<label>Ngày Sinh</label>
+								  	<input type="text" name="ngaysinh" class="form-control" value="<?=date("d/m/y H:i",$kq['birthday'])?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Designation</label>
-								  	<input type="text" class="form-control" value="UI Developer">
+								  	<label>Địa chỉ</label>
+								  	<input type="text" name="diachi" class="form-control" value="<?=$kq['address']?>">
 								</div>
 							</div>
-							<div class="col-md-12">
+							<div class="col-md-6">
 								<div class="form-group">
-								  	<label>Bio</label>
-									<textarea class="form-control" rows="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore vero enim error similique quia numquam ullam corporis officia odio repellendus aperiam consequatur laudantium porro voluptatibus, itaque laboriosam veritatis voluptatum distinctio!</textarea>
+								  	<label>Điểm tích lũy:</label>
+									<p style="color: red; padding-top: 5px;"><?=$kq['point']?></p>
 								</div>
 							</div>
+							
 						</div>
 						<div>
-							<button type="submit" class="btn btn-primary">Update</button>
+							<button type="submit" name="user" class="btn btn-primary">Update</button>
 							<button class="btn btn-light">Cancel</button>
 						</div>
 					</div>
+					</form>
+					<?php  }} ?>
                     <?php
               if (!empty($user)) {
-                ?>
+				
+              ?>
+					
 					<div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-                    <form action="./user_infor_edit.php?action=edit" method="Post" autocomplete="off">
+                    <form action="./edit_pass.php?action=edit" method="Post" autocomplete="off">
                     <input type="hidden" name="user_id" value="<?= $user['user_id'] ?>">
 						<h3 class="mb-4">Password Settings</h3>
 						<div class="row">
@@ -120,7 +147,7 @@
 							</div>
 						</div>
 						<div>
-							<button  type="submit" class="btn btn-primary">Update</button>
+							<button  type="submit"  class="btn btn-primary">Update</button>
 							<button class="btn btn-light">Cancel</button>
 						</div>
                     </form>

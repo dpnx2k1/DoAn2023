@@ -1,6 +1,7 @@
 <?php
 include "./classF/delivery_class.php";
 include "./classF/cart_class.php";
+include "classF/user_class.php";
 if (session_id() === ''){
     session_start();
    }
@@ -41,9 +42,36 @@ if (session_id() === ''){
                         $wards=$delivery->get_name_w();
                         
                         $addr.="".$provines_n.",".$districts_n.",".$wards."";
-                        $insert_order=$delivery->insert_order($addr);
-                        $order_id=$delivery->get_id_order();
-                        // var_dump($order_id);exit;
+                       // $insert_order=$delivery->insert_order($addr);
+                        $con=mysqli_connect("localhost","root","123456789","db_doan");  
+                        $user_id=0;
+                        // $user_id=$_SESSION['current_user']?$_SESSION['current_user']['user_id']:Null;
+                        if (!empty($_SESSION['current_user'])) {
+                            $user_id=$_SESSION['current_user']['user_id'];
+                        }
+                        $user_name =$_POST['hoten'];
+                        $sdt=$_POST['sdt'];
+                        $address_detail=$_POST['diachi'];
+                        
+                        $note=$_POST['note'];
+                        $total=$_SESSION['tong'];
+                        $query = "INSERT INTO `orders`(
+                            `order_id`,
+                            `user_id`,
+                            `user_name`,
+                            `sdt`,
+                            `address_`,
+                           `address_detail`,
+                            `note`,
+                            `total`,
+                            `created_time`,
+                            `last_updated`
+                    ) VALUES(null,'$user_id','$user_name','$sdt','$addr','$address_detail','$note','$total','".time()."','".time()."')";
+                     $insert_order = mysqli_query($con,$query);
+                     $order_id=mysqli_insert_id($con);
+                     $_SESSION['order_id']=$order_id;
+                        // $order_id=$delivery->get_id_order();
+                     //  var_dump($order_id);exit;
                             $orderProducts=array();
                             while ($row = mysqli_fetch_array($show_product_list)) {
                                 $orderProducts[] = $row;  
@@ -59,6 +87,11 @@ if (session_id() === ''){
                              
                                   
                                 }
+                                if ($_SESSION['current_user']['point']==0) {
+                                    $user=new user;
+                                     $set_point=$user->update_point_zero($_SESSION['current_user']['user_id']);
+                                }
+                               
                                 $insert_order_detail=$delivery->insert_order_detail($insert_str);
                                 $success="Đặt hàng thành công !";
                                 unset($_SESSION['cart']);
@@ -83,6 +116,7 @@ if (session_id() === ''){
     <?php }elseif(!empty($success)){ ?>
     <div class="notify">
         <?=$success?>
+        <a href="order_detail.php">Chi tiết đơn hàng</a>
         <a href="./category.php?brand_id=12&item_per_page=8&page=1">Tiếp tục mua hàng</a>
     </div>
    <?php }else{
@@ -181,7 +215,7 @@ if (session_id() === ''){
                             <th>Thành Tiền</th>
                         </tr>
                         <?php 
-                        $total_pay=0;
+                       // $total_pay=0;
                         if(!empty($show_product_list)){
                             
                             while ($row= $show_product_list->fetch_assoc()) {  
@@ -192,8 +226,8 @@ if (session_id() === ''){
                                 }else{
                                     $price=$row['product_price'];
                                 }
-                                $pay=$price*$_SESSION['cart'][$row['product_id']];
-                                $total_pay+=$pay;
+                               // $pay=$price*$_SESSION['cart'][$row['product_id']];
+                               // $total_pay+=$pay;
                                  
                       ?>  
                         <tr>
@@ -211,11 +245,11 @@ if (session_id() === ''){
                         }?> 
                         <tr>
                             <td style="font-weight: bold; border-top:2px solid #dddddd;" colspan="2">Tổng</td>
-                            <td style="font-weight: bold"><p><?=$total_pay?> <sup>đ</sup></p></td>
+                            <td style="font-weight: bold"><p><?=$_SESSION['total_pay'];?> <sup>đ</sup></p></td>
                         </tr>
                         <tr>
                             <td style="font-weight: bold;" colspan="2">Thuế VAT</td>
-                            <td style="font-weight: bold"><p><?php $thue= 10*$total_pay/100; echo $thue?> <sup>đ</sup></p></td>
+                            <td style="font-weight: bold"><p><?php $thue= 10*$_SESSION['total_pay']/100; echo $thue?> <sup>đ</sup></p></td>
                         </tr>
                         <tr>
                             <td style="font-weight: bold;" colspan="2">Giảm Giá</td>
@@ -225,9 +259,9 @@ if (session_id() === ''){
                         <tr>
                             <td style="font-weight: bold;" colspan="2">Tổng Tiền Hàng</td>
                             <td style="font-weight: bold"><p><?php if(!empty($_SESSION['sale_price'])){
-                                                                     $_SESSION['tong'] = $total_pay + $thue - $_SESSION['sale_price'];
+                                                                     $_SESSION['tong'] = $_SESSION['total_pay'] + $thue - $_SESSION['sale_price'];
                                                                     }else{
-                                                                        $_SESSION['tong'] =$total_pay + $thue;
+                                                                        $_SESSION['tong'] =$_SESSION['total_pay'] + $thue;
                                                                     }
                                                                       echo $_SESSION['tong']?><sup>đ</sup></p></td>
                         </tr>

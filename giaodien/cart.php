@@ -2,10 +2,13 @@
 include "headerF.php";
 include "classF/cart_class.php";
 include "classF/product_class.php";
+include "classF/user_class.php";
   
  $cart=new cartF;
  $total_pay=0;
  $i=0;
+
+
  if (session_id() === ''){
      session_start();
     }
@@ -46,18 +49,64 @@ include "classF/product_class.php";
                 if (isset($_POST['update_click'])) {
                     update();
                 }elseif (isset($_POST['order_click'])) {
-                  header('location:delivery.php?action=submit');
-                }elseif (isset($_POST['sale'])) {
+                    // header("location:delivery.php?action=submit");
+               
+                }elseif (isset($_POST['sale'])){
                     $sale=$cart->get_sale($_POST['sale']);
                     if (!empty($sale)) {
                         while ($sale_price=$sale->fetch_assoc()) {
                             $_SESSION['sale_price']=$sale_price['product_sale_price'];
-                             $total_pay= $total_pay - $_SESSION['sale_price'];          
-                        }                   
+                                     
+                        }  
+                       // $total_pay_sale=$total_pay - $_SESSION['sale_price'];
+                        
+                       if ($_SESSION['sale_point']!=0) {
+                        $total_pay=$total_pay - $_SESSION['sale_point'] - $_SESSION['sale_price'];
+                        unset($_SESSION['sale_point']);
+                       }else{
+                            $total_pay= $total_pay - $_SESSION['sale_price']; }
                     }else {
+                        if ($_SESSION['sale_point']!=0) {
+                            $total_pay=$total_pay - $_SESSION['sale_point'];
+                            
+                        }
                         $msg="Mã giảm giá sai hoặc không tồn tại !";
                     }
                     
+                }elseif(isset($_POST['point'])) {
+                    if(!empty($_SESSION['current_user'])){
+                    $point=$cart->get_point($_SESSION['current_user']['user_id']);
+                    if (!empty($point)) {
+                        while ($sale_price2=$point->fetch_assoc()) {
+                            $_SESSION['sale_point']=$sale_price2['point'];
+                        }
+                        if($_SESSION['sale_point']!=0){
+                            if (!empty($_SESSION['sale_price'])) {
+                                $total_pay=$total_pay - $_SESSION['sale_point'] - $_SESSION['sale_price'];
+                                unset($_SESSION['sale_price']);
+                                $_SESSION['current_user']['point']=0;
+                            }else{
+                              $total_pay= $total_pay - $_SESSION['sale_point'];
+                              $_SESSION['current_user']['point']=0;
+                            }  
+                            
+                            }else{
+                                $msg="bạn không còn điểm !";
+                                if (!empty($_SESSION['sale_price'])) {
+                                    $total_pay=$total_pay - $_SESSION['sale_price'];
+                                    unset($_SESSION['sale_price']);
+                                }
+                        }                  
+                    }else {
+                        $msg="bạn không có điểm !";
+                    }
+                }else{
+                    $msg="bạn chưa đăng nhập !";
+                    if (!empty($_SESSION['sale_price'])) {
+                        $total_pay=$total_pay - $_SESSION['sale_price'];
+                        unset($_SESSION['sale_price']);
+                    }
+                }
                 }
                 break;
             
@@ -170,35 +219,40 @@ include "classF/product_class.php";
                          <!-- tính tien sau khi có mã giảm giá  -->
                             <?php 
                             if ($total_pay<=0) {
-                                $total_last=0;
+                                $_SESSION['total_pay']=0;
                             }else {
-                                $total_last=$total_pay;
+                                $_SESSION['total_pay']=$total_pay;
                             }
                            ?>
                         <!-- ------------------------------- -->
                         <tr>
                             <td>TẠM TÍNH</td>
-                            <td><p><?=number_format($total_pay)?> <sup>đ</sup></p></td>
+                            <td><p style="display: inline-flex;"><?=number_format($total_pay)?> <sup>đ</sup></p></td>
                         </tr> 
                           <!-- sale -->
                         </tr>
-                        <form action="cart.php?action=submit">
+                        <form action="cart.php?action=submit" method="post" >
                         <tr> 
                             <td>
                                 <label for="sale">MÃ GIẢM GIÁ : </label>
                                 <input type="text" name="sale" style=" width: 150px; height: 30px;">
                                 <input style="background-color: red; color: white; border: 1px solid tomato; width: 50px; height: 30px;" type="submit" name="sale_off" value="Đồng ý">
+                               </form>
+                               <form action="cart.php?action=submit" method="post">    
+                                <input style="color: red;margin-top: 20px;margin-right: 31px; width: 200px; height: 35px;text-align: center;" type="submit" name="point" value="Sử dụng điểm Thành viên !">
+                            </form>
                                 <?php if (!empty($msg)) {?>
                                     <br><br>
-                                    <p style="color: red;"><?=$msg?></p>
+                                    <p style="color: red; margin-right: 170px;"><?=$msg?></p>
                                     <br>
+                                    
                                <?php }?>
                             </td>
-                        </tr> </form>
+                        </tr> 
                         <tr>
                            <td>TỔNG TIỀN HÀNG</td>
                           
-                            <td><p style="color: black; font-weight:bold;"><?=number_format($total_last)?> <sup>đ</sup></p></td>
+                            <td><p style="display: inline-flex; color: black; font-weight:bold;"><?=number_format($_SESSION['total_pay'])?><sup>đ</sup></p></td>
                         </tr>
                     </table>
                     <div class="cart-content-right-text">
@@ -209,12 +263,14 @@ include "classF/product_class.php";
                     </div>
                     <div class="cart-content-right-button">
                     <a href="./category.php?brand_id=12&item_per_page=8&page=1"> TIẾP TỤC MUA SẮM</a>
-                        <button type="submit" name="order_click">THANH TOÁN</button>
+                        <a href="delivery.php?action=submit">THANH TOÁN</a>
                     </div>
+                    <?php if(empty($_SESSION['current_user'])){ ?>
                     <div class="cart-content-right-login">
                         <p>TÀI KHOẢN</p>
                         <p>Hãy <a href="login.php " style="color: gray;">đăng nhập</a> tài khoản của bạn để tích điểm thành viên</p>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

@@ -3,19 +3,40 @@ include "headerF.php";
 include "./classF/category_class.php";
 ?>
 <?php 
-    session_start();
+
+      if (session_id()=='') {
+        session_start();
+      }
+      $category= new categoryF;
+      if (isset($_GET['brand_id'])) {
+      $brand_id=$_GET['brand_id'];
+      $_SESSION['brand_id']=$brand_id;
+      $show_brand_name = $category->show_brand_c($brand_id);
+      if ($show_brand_name) {
+      $resultC=$show_brand_name->fetch_assoc();   
+     } 
+
+      $param = "";
+      $sortParam = "brand_id=".$_SESSION['brand_id']."&item_per_page=8&page=1&";
+      $orderConditon = "";
+      //tim kiem
         $search = isset($_GET['name']) ? $_GET['name'] : "";
         if ($search) {   
             $where = "WHERE `name` LIKE '%" . $search . "%'";
+            $param .= "name=".$search."&";
+            $sortParam =  "name=".$search."&"."brand_id=".$_SESSION['brand_id']."&item_per_page=8&page=1&";
         }
-    $category= new categoryF;
-    if (isset($_GET['brand_id'])) {
-    $brand_id=$_GET['brand_id'];
-    $_SESSION['brand_id']=$brand_id;
-    $show_brand_name = $category->show_brand_c($brand_id);
-    if ($show_brand_name) {
-    $resultC=$show_brand_name->fetch_assoc();   
-   } 
+
+         //Sắp xếp
+    $orderField = isset($_GET['field']) ? $_GET['field'] : "";
+    $orderSort = isset($_GET['sort']) ? $_GET['sort'] : "";
+    if(!empty($orderField)
+        && !empty($orderSort)){
+        $orderConditon = "ORDER BY `tbl_product`.`".$orderField."` ".$orderSort;
+        $param .= "field=".$orderField."&sort=".$orderSort."&"."brand_id=". $_SESSION['brand_id']."&";
+    }
+
+ 
     
     
 ?>
@@ -78,11 +99,14 @@ include "./classF/category_class.php";
                         </form>
                         </div>
                         <div class="category-right-top-item ">
-                            <select name="sapxep" id="">
-                                <option value="">sắp xếp</option>
-                                <option value="">Giá cáo đến thấp</option>
-                                <option value="">Giá thấp đến cao</option>
-                            </select>
+                        <select id="sort-box" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value)">
+                    <option value="">Sắp xếp giá</option> 
+                    <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "desc"&& isset($_GET['field']) && $_GET['field'] == "product_price_pro") { ?> selected <?php } ?> value="?<?=$sortParam?>field=product_price_pro&sort=desc">Giá KM Cao -> thấp</option>
+                    <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc"&& isset($_GET['field']) && $_GET['field'] == "product_price_pro") { ?> selected <?php } ?> value="?<?=$sortParam?>field=product_price_pro&sort=asc">Giá KM Thấp -> cao</option>
+                    <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "desc" && isset($_GET['field']) && $_GET['field'] == "product_price") { ?> selected <?php } ?> value="?<?=$sortParam?>field=product_price&sort=desc">Giá Cao -> thấp</option>
+                    <option <?php if(isset($_GET['sort']) && $_GET['sort'] == "asc" && isset($_GET['field']) && $_GET['field'] == "product_price") { ?> selected <?php } ?> value="?<?=$sortParam?>field=product_price&sort=asc">Giá Thấp -> cao</option>
+                   
+                    </select>
                         </div>
                     </div>
                     <div class="category-right-content row">
@@ -93,8 +117,8 @@ include "./classF/category_class.php";
                             $offset=($curren_page-1)*$item_per_page;
                             
                             if($search){
-                                $product_category=$category->show_product_by_brandid2($search,$brand_id_show,$item_per_page,$offset);
-                                $total=$category->show_product_by_brandid3($search,$brand_id_show);
+                                $product_category=$category->show_product_by_brandid2($orderConditon,$search,$brand_id_show,$item_per_page,$offset);
+                                $total=$category->show_product_by_brandid3($orderConditon,$search,$brand_id_show);
                                 if ($total) {
                                    $total=$total->num_rows;  //var_dump($total);exit;
                                 }
@@ -106,7 +130,7 @@ include "./classF/category_class.php";
                                      $total=$total->num_rows;// var_dump($total);exit;
                                 }      
                                 $total_page=ceil($total/$item_per_page);
-                                $product_category=$category->show_product_by_brandid($brand_id_show,$item_per_page,$offset);}
+                                $product_category=$category->show_product_by_brandid($orderConditon,$brand_id_show,$item_per_page,$offset);}
                             if ($product_category) {
                                while ($kq=$product_category->fetch_assoc()) {
                         
@@ -116,7 +140,7 @@ include "./classF/category_class.php";
                            
                                 <h3 class="cart_title"><?php echo $kq['product_name']  ?></h3>
                           
-                            <?php if(!empty($kq['product_price_pro'])) {
+                            <?php if(!empty($kq['product_price_pro'])&& $kq['product_price_pro'] >0) {
                              ?>
                              <div class="text"><h4><?=number_format($kq['product_price'])?><sup>đ</sup></h4></div> 
                              <p><?php echo number_format($kq['product_price_pro']); ?><sup>đ</sup></p>

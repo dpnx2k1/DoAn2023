@@ -2,7 +2,8 @@
 include "header.php";
 include "./class/slide_class.php";
 ?>
-<?php
+<?php 
+if($_SESSION['current_user']['_status']==1){
     $slide = new slide;
     $show_slide= $slide->show_slide();
 ?>
@@ -40,3 +41,4 @@ include "./class/slide_class.php";
 </body>
 
 </html>
+<?php } ?>

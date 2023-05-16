@@ -11,10 +11,13 @@
 </head>
 <body>
 <?php
-        session_start();
+        if (session_id()=='') {
+            session_start();
+        }
+       
         // include '../connect_db.php';
         include '../function.php';
-        if (!empty($_SESSION['current_user'])) { //Kiểm tra xem đã đăng nhập chưa?
+        if (!empty($_SESSION['current_user'])&& $_SESSION['current_user']['_status']==1) { //Kiểm tra xem đã đăng nhập chưa?
             ?>
             <div id="admin-heading-panel">
                 <div class="container">
@@ -32,20 +35,10 @@
                     </div>
                 </div>
             </div>
-            <!-- <div id="content-wrapper">
-                <div class="container">
-                    <div class="left-menu">
-                        <div class="menu-heading">Admin Menu</div>
-                        <div class="menu-items">
-                            <ul>
-                                <li><a href="#">Cấu hình</a></li>
-                                <li><a href="#">Tin tức</a></li>
-                                <li><a href="product_listing.php">Sản phẩm</a></li>
-                                <li><a href="#">Đơn hàng</a></li>
-                            </ul>
-                        </div> -->
+        
                     </div>
                     
                 <?php 
-                include "slider.php";
-                    } ?>
+                include "slider.php";}?>
+                  
+                

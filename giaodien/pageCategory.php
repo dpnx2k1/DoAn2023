@@ -15,10 +15,10 @@
 </style>
 
 <?php 
-    $param = "";
-    if($search){
-        $param = "name=".$search."&";
-    }
+    // $param = "";
+    // if($search){
+    //     $param = "name=".$search."&";
+    // }
     if ($curren_page>3) {
         $first=1;?>
      <a href="<?php echo'category.php?brand_id='.$_GET['brand_id'].''; ?>&<?=$param?>item_per_page=<?=$item_per_page?>&page=<?=$first?>"> 

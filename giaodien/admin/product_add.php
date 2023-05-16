@@ -61,8 +61,8 @@ include "class/product_class.php";
                     <input name="product_total"  required type="text">
                     <label for="">Giá Sản phẩm <span style="color: red;">*</span></label>
                     <input name="product_price"  required type="text">
-                    <label for="">Giá Khuyến mãi<span style="color: red;">*</span></label>
-                    <input name="product_price_pro"  type="text">
+                    <label for="">Giá Khuyến mãi <span style="color: red;">*</span></label>
+                    <input name="product_price_pro" required type="text">
                     <label for="">Mô Tả sản phẩm<span style="color: red;">*</span></label>
                     <textarea name="product_description" id="editor" cols="500" rows="50"></textarea>
                     <label for="">hướng dẫn bảo quản sản phẩm<span style="color: red;">*</span></label>

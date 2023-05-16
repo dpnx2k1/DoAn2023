@@ -23,7 +23,8 @@
         </style>
     </head>
     <body>
-        <?php
+        <?php 
+     
         $error = false;
         if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
             $con=mysqli_connect("localhost","root","123456789","db_doan");    
@@ -45,6 +46,7 @@
                     <a href="./list_user.php">Danh sách tài khoản</a>
                 </div>
             <?php } ?>
-        <?php } ?>
+        <?php }  ?>
     </body>
 </html>
+

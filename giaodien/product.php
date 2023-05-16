@@ -3,8 +3,9 @@ include "config/session.php";
 include "headerF.php";
 include "./classF/product_class.php";
 
-    // $session= new Session;
-    // $session_Pr=$session->init();
+    if (session_id()=='') {
+        session_start();
+    }
      $product= new product;
     if (isset($_GET['product_id'])) {
     
@@ -23,15 +24,6 @@ include "./classF/product_class.php";
         if ($show_brand_pr) {
             $brand_name=$show_brand_pr->fetch_assoc();
         }
-        // $product_name=$result_pr['product_name'];
-        // if(!isset( $_SESSION['product_name'] ) )
-        // {
-        //     $_SESSION['product_name'] =$product_name;
-        // }
-        // else
-        // {   
-        //     $_SESSION['product_name'] = '';
-        // }
     }
     
 ?>
@@ -70,7 +62,7 @@ include "./classF/product_class.php";
                         </div>
                         <div class="product-content-right-product-price row"> 
                                 
-                             <?php if(!empty($result_pr['product_price_pro'])) {
+                             <?php if(!empty($result_pr['product_price_pro'])&& $result_pr['product_price_pro'] >0) {
                              ?>
                              <p style="text-decoration: solid line-through;"><?=number_format($result_pr['product_price'])?><sup>đ</sup></p>
                              <p><?php echo number_format($result_pr['product_price_pro']); ?><sup>đ</sup></p>
@@ -154,9 +146,7 @@ include "./classF/product_class.php";
                                     <div class="product-content-right-product-bottom-content-big-title-item baoquan">
                                             <p>Bảo Quản </p>
                                     </div>
-                                    <!-- <div class="product-content-right-product-bottom-content-big-title-item thamkhao">
-                                            <p>Tham khảo Size</p>
-                                    </div> -->
+                                   
                                 </div>
                                 <div class="product-content-right-product-bottom-content-center">
                                     <div class="product-content-right-product-bottom-content-center-chitiet">
@@ -175,37 +165,34 @@ include "./classF/product_class.php";
   
     </section>
     <!-- ----product liên quan  -->
+    <?php 
+   // print_r($_SESSION['brand_id']);exit;
+    $pr_2=$product->show_product_related();
+    
+    ?>
     <section>
         <div class="product-related container">
             <div class="product-related-title">
                 <p>SẢN PHẨM LIÊN QUAN</p>
             </div>
             <div class="product-content row">
+               <?php 
+                if ($pr_2) {
+                   for ($i=0; $i <5 ; $i++){  $show=$pr_2->fetch_assoc();?>
+                  
                 <div class="product-related-item">
-                    <img src="image/sp2.jpg" alt="">
-                    <h1>AO SƠ MI CỔ TRÒN</h1>
-                    <p>79.000 <sup>đ</sup></p>
+                <a href=<?php echo'product.php?product_id='.$show['product_id'].''; ?>><img src=<?php echo'"admin/Upload/'.$show['product_img'].'"'; ?> alt=""></a>
+                <h1 class="cart_title"><?php echo $show['product_name']  ?></h1>
+                <?php if(!empty($show['product_price_pro'])&& $show['product_price_pro'] >0) {
+                             ?>
+                             <div class="text"><h4><?=number_format($show['product_price'])?><sup>đ</sup></h4></div> 
+                             <p><?php echo number_format($show['product_price_pro']); ?><sup>đ</sup></p>
+                            <?php }else{ ?>
+                            <h4><?php echo number_format($show['product_price']); ?><sup>đ</sup></h4>
+                <?php  } ?>
                 </div>
-                <div class="product-related-item">
-                    <img src="image/sp3.jpg" alt="">
-                    <h1>AO SƠ MI CỔ TRÒN</h1>
-                    <p>79.000 <sup>đ</sup></p>
-                </div>
-                <div class="product-related-item">
-                    <img src="image/sp4.jpg" alt="">
-                    <h1>AO SƠ MI CỔ TRÒN</h1>
-                    <p>79.000 <sup>đ</sup></p>
-                </div>
-                <div class="product-related-item">
-                    <img src="image/sp5.jpg" alt="">
-                    <h1>AO SƠ MI CỔ TRÒN</h1>
-                    <p>79.000 <sup>đ</sup></p>
-                </div>
-                <div class="product-related-item">
-                    <img src="image/sp5.jpg" alt="">
-                    <h1>AO SƠ MI CỔ TRÒN</h1>
-                    <p>79.000 <sup>đ</sup></p>
-                </div>
+       
+            <?php  }} ?>
             </div>
         </div>
     </section>

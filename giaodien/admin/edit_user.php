@@ -27,7 +27,8 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <?php
+        <?php 
+  
        $con=mysqli_connect("localhost","root","123456789","db_doan"); 
         $error = false;
         if (isset($_GET['action']) && $_GET['action'] == 'edit') {

@@ -2,7 +2,9 @@
 include "header.php";
 include "class/brand_class.php";
 ?>
+
 <?php
+if($_SESSION['current_user']['_status']==1){
     $brand = new brand;
     if($_SERVER["REQUEST_METHOD"] === "POST") {
         $category_id = $_POST["category_id"];
@@ -43,3 +45,4 @@ include "class/brand_class.php";
     </section>
 </body>
 </html>
+<?php } ?>

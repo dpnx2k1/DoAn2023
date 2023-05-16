@@ -4,7 +4,7 @@ include "header.php";
 include "./class/product_class.php";
 $con=mysqli_connect("localhost","root","123456789","db_doan");   
 
-if (!empty($_SESSION['current_user'])) {
+if($_SESSION['current_user']['_status']==1){
     
     if(!empty($_GET['action']) && $_GET['action'] == 'search' && !empty($_POST)){
         $_SESSION['product_filter'] = $_POST;
@@ -104,12 +104,8 @@ if (!empty($_SESSION['current_user'])) {
             </div> 
             </div>
         </div>
-        <?php }else {
-           echo "bạn chưa đăng nhập";?>
-           <a href="../login.php">đăng nhập</a>
-           <?php 
-            } ?>
+     
         </section>
 </body>
 
-</html>
+</html>   <?php } ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "class/product_class.php";
     $product = new product;
     $category_id = $_GET['category_id'];

@@ -4,6 +4,7 @@ include "header.php";
 include "class/category_class.php";
 ?>
 <?php
+
     $category = new category;
     if(!isset($_GET["category_id"]) || $_GET["category_id"] == NULL){
         echo "<script>window.location='category_List.php'</script>";

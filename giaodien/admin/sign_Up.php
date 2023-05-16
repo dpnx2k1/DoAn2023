@@ -44,6 +44,7 @@ and open the template in the editor.
     <body>
 
         <?php
+        if($_SESSION['current_user']['_status']==1){
         $error = false;
         if (isset($_GET['action']) && $_GET['action'] == 'create') {
             if (isset($_POST['username']) && !empty($_POST['username']) && isset($_POST['password']) && !empty($_POST['password'])) {
@@ -89,3 +90,4 @@ and open the template in the editor.
         <?php } ?>
     </body>
 </html>
+<?php } ?>
