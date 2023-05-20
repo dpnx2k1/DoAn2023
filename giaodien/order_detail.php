@@ -19,7 +19,7 @@
             FROM orders
             INNER JOIN order_detail ON orders.order_id = order_detail.order_id
             INNER JOIN tbl_product ON tbl_product.product_id = order_detail.product_id
-            WHERE orders.order_id = ".$_SESSION['order_id']."");
+            WHERE orders.order_id = ".$_GET['id']."");
             $orders = $order->fetch_all();
             // var_dump($orders);exit;
          //  print_r($orders);exit;

@@ -8,7 +8,9 @@
     <script src="https://kit.fontawesome.com/34e972a4c1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style_F2.css">
     <title>DPN Store</title>
-   <!--Start of Fchat.vn--><script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=645fb5d756498366700fac38" async="async"></script><!--End of Fchat.vn-->
+   <!-- Start of Fchat.vn-->
+   <!-- <script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=645fb5d756498366700fac38" async="async"></script> -->
+   <!--End of Fchat.vn -->
 </head>
 <?php 
     if (session_id()=='') {

@@ -65,7 +65,7 @@ class product{
                                         product_description,
                                         product_pre,
                                         product_img
-        ) VALUES('$product_name','$category_id','$brand_id','$product_color_name','$product_size','$product_total','$product_price','$product_price_pro','$product_description','$product_pre','$product_img')";
+        ) VALUES('$product_name','$category_id','$brand_id','$product_color_name','$product_size','$product_price','$product_total','$product_price_pro','$product_description','$product_pre','$product_img')";
         $result = $this ->db->insert($query);
         if ($result) {
             $query="SELECT * FROM tbl_product ORDER BY product_id DESC LIMIT 1";//lay ra id sp moi them vao va sp đó nó nằm ở cuối

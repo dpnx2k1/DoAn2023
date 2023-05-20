@@ -168,6 +168,7 @@ include "./classF/product_class.php";
     <?php 
    // print_r($_SESSION['brand_id']);exit;
     $pr_2=$product->show_product_related();
+    $rowcount=mysqli_num_rows($pr_2);
     
     ?>
     <section>
@@ -177,9 +178,13 @@ include "./classF/product_class.php";
             </div>
             <div class="product-content row">
                <?php 
+             //  print_r($rowcount);exit;
+                $n=5;
+                if ($rowcount<5) {
+                   $n=$rowcount;
+                }
                 if ($pr_2) {
-                   for ($i=0; $i <5 ; $i++){  $show=$pr_2->fetch_assoc();?>
-                  
+                   for ($i=0; $i <$n ; $i++){  $show=$pr_2->fetch_assoc();?>
                 <div class="product-related-item">
                 <a href=<?php echo'product.php?product_id='.$show['product_id'].''; ?>><img src=<?php echo'"admin/Upload/'.$show['product_img'].'"'; ?> alt=""></a>
                 <h1 class="cart_title"><?php echo $show['product_name']  ?></h1>

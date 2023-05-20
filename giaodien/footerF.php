@@ -1,4 +1,9 @@
-<script language="javascript" src="script.js"></script>
+
+<?php 
+include "base.php";
+?>
+
+<script language="javascript" src="script4.js"></script>
 <div class="footer-top">
     <li>  <img src="image/logo.png" alt=""></li>
     <li> <a>Giới thiệu</a></li> 
