@@ -9,6 +9,7 @@ and open the template in the editor.
         <title>Tạo form đăng ký, đăng nhập hệ thống</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <link rel="stylesheet" href="style_F2.css">
         <style>
             .box-content{
@@ -28,6 +29,9 @@ and open the template in the editor.
         </style>
     </head>
     <body>
+    <div class="logo">
+            <a href="index.php"><img src="image/2.png" alt=""></a>
+        </div>
         <?php if (session_id()=='') {
           session_start();
         }

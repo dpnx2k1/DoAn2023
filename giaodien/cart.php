@@ -12,17 +12,19 @@ include "classF/user_class.php";
  if (session_id() === ''){
      session_start();
     }
-    if(!isset($_SESSION['product_list'])){
-        $_SESSION['product_list']=array();
+    // if(!isset($_SESSION['product_list'])){
+    //     $_SESSION['product_list']=array();
 
-    }
+    // }
     if(!isset($_SESSION['cart'])){
         $_SESSION['cart']=array();
 
     }
     if (isset($_GET['action'])) { 
+     //   var_dump($_POST['quantity_pr']);
     function update($add=false){
-        foreach ($_POST['quantity_pr'] as $id => $quatity) {       
+        foreach ($_POST['quantity_pr'] as $id => $quatity) {   
+                $_SESSION['cart'][$id]=0;
                 if ($add) {
                $_SESSION['cart'][$id] += $quatity;
                  }else { 
@@ -37,13 +39,13 @@ include "classF/user_class.php";
                 $kq=$product->fetch_assoc();
                }
                update(true);
-               header("location:cart.php");
+               //header("location:cart.php");
                 break;
             case 'delete':
                 if (isset($_GET['id'])) {
                     unset($_SESSION['cart'][$_GET['id']]);
                 }
-                header("location:cart.php");
+                // header("location:cart.php");
                 break;
             case 'submit':
                 if (isset($_POST['update_click'])) {
@@ -235,7 +237,7 @@ include "classF/user_class.php";
                         <tr> 
                             <td>
                                 <label for="sale">MÃ GIẢM GIÁ : </label>
-                                <input type="text" name="sale" style=" width: 150px; height: 30px;">
+                                <input type="text" name="sale" style="width: 150px; height: 30px;">
                                 <input style="background-color: red; color: white; border: 1px solid tomato; width: 50px; height: 30px;" type="submit" name="sale_off" value="Đồng ý">
                                </form>
                                <form action="cart.php?action=submit" method="post">    
@@ -262,7 +264,7 @@ include "classF/user_class.php";
                         <?php  } ?>
                     </div>
                     <div class="cart-content-right-button">
-                    <a href="./category.php?brand_id=12&item_per_page=8&page=1"> TIẾP TỤC MUA SẮM</a>
+                    <a href="./category.php?brand_id=21&item_per_page=8&page=1"> TIẾP TỤC MUA SẮM</a>
                         <a href="delivery.php?action=submit">THANH TOÁN</a>
                     </div>
                     <?php if(empty($_SESSION['current_user'])){ ?>

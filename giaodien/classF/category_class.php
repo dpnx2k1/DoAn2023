@@ -30,6 +30,7 @@ class categoryF{
         $result = $this ->db->select($query);
         return $result;
     }
+
     public function show_product_by_brandid2($orderConditon,$search,$brand_id,$item_per_page,$offset){
         $query ="SELECT * FROM tbl_product WHERE brand_id=$brand_id AND  `product_name` LIKE '%" . $search . "%' ".$orderConditon."  LIMIT $item_per_page OFFSET $offset ";
         $result = $this ->db->select($query);

@@ -125,6 +125,7 @@ include "./classF/category_class.php";
                                 $total_page=ceil($total/$item_per_page);
                             }
                             else{ 
+                            
                               $total =$category->show_product_total($_SESSION['brand_id']);
                                 if ( $total) {
                                      $total=$total->num_rows;// var_dump($total);exit;

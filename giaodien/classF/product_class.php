@@ -42,7 +42,7 @@ class product{
          return $result;
      }
      public function show_product_hot(){
-        $query ="SELECT  * FROM tbl_product WHERE brand_id='12'";
+        $query ="SELECT  * FROM tbl_product WHERE brand_id='21'";
          $result = $this ->db->select($query);
          return $result;
      }

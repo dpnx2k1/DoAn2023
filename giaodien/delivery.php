@@ -117,7 +117,7 @@ if (session_id() === ''){
     <div class="notify">
         <?=$success?>
         <a href="order_detail.php">Chi tiết đơn hàng</a>
-        <a href="./category.php?brand_id=12&item_per_page=8&page=1">Tiếp tục mua hàng</a>
+        <a href="./category.php?brand_id=21&item_per_page=8&page=1">Tiếp tục mua hàng</a>
     </div>
    <?php }else{
     include "headerF.php";
@@ -143,10 +143,13 @@ if (session_id() === ''){
         <div class="container row">
             <div class="delivery-content row">
                 <div class="delivery-content-left">
-                        <p>Vui lòng chọn địa chỉ giao hàng</p>
+                    <?php if (empty($_SESSION['current_user'])) {
+                    
+                     ?>
+                       <p>Vui lòng chọn địa chỉ giao hàng</p>
                         <div class="delivery-content-left-login row">
                             <i class="fas fa-sign-in-alt"></i>
-                            <p>Đăng nhập (nếu bạn đã có tài khoản)</p>
+                            <p> <a href="login.php"> Đăng nhập</a>(nếu bạn đã có tài khoản)</p>
                         </div>
                         <div class="delivery-content-left-khachle row">
                             <input checked type="radio" name="loại khách" value="Khách lẻ">
@@ -154,8 +157,9 @@ if (session_id() === ''){
                         </div>
                         <div class="delivery-content-left-signup row">
                             <input  type="radio" name="loại khách" value="Khách lẻ">
-                            <p><span style="font-weight: bold;">Đăng ký </span> (Tạo mới tài khoản với thông tin bên dưới )</p>
+                            <p><span style="font-weight: bold;"> <a href="register.php">Đăng ký</a></span> (Tạo mới tài khoản với thông tin bên dưới )</p>
                         </div>
+                        <?php } ?>
                         <div class="delivery-content-left-input-top row">
                             <div class="delivery-content-left-input-top-item">
                                 <label for="">Họ Tên <span style="color: red;">*</span></label>

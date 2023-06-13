@@ -56,7 +56,8 @@ include "class/product_class.php";
                         <option value="Xanh Da Trời">Xanh Da Trời</option>
                         <option value="Hồng">Hồng</option>
                         <option value="Be">Be</option> 
-                        <option value="Trắng">Trắng</option>      
+                        <option value="Trắng">Trắng</option> 
+                        <option value="Trắng">Đen</option>      
                     </select>
                     <label for="">Số Lượng Sản phẩm <span style="color: red;">*</span></label>
                     <input name="product_total"  required type="text">
